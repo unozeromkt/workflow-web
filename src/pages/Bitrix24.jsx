@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layers, Box, Settings, ArrowRight } from 'lucide-react';
 import ScrollRevealItem from '../components/ScrollRevealItem';
+import bitrixGoldBadge from '../assets/Bitrix-1.jpg';
 
 const Bitrix24 = () => {
     return (
@@ -36,7 +37,7 @@ const Bitrix24 = () => {
                 }}>
                     Gold Partner oficial con enfoque en arquitectura, automatización y resultados.
                 </p>
-                <a href="https://www.bitrix24.com" target="_blank" rel="noreferrer" style={{
+                <a href="https://www.bitrix24.com/partners/?ID=11605791" target="_blank" rel="noreferrer" style={{
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
@@ -62,6 +63,20 @@ const Bitrix24 = () => {
                 >
                     Ver perfil oficial Bitrix24 <ArrowRight size={18} />
                 </a>
+                <div style={{ marginTop: '2rem' }}>
+                    <img 
+                        src={bitrixGoldBadge} 
+                        alt="Bitrix24 Gold Partner" 
+                        style={{
+                            width: '180px',
+                            maxWidth: '50%',
+                            height: 'auto',
+                            objectFit: 'contain',
+                            display: 'inline-block',
+                            filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.25))'
+                        }}
+                    />
+                </div>
                 </div>
             </section>
 

@@ -124,7 +124,7 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <Link to="/contacto" className="btn btn-primary" style={{ padding: '0.625rem 1.5rem', fontSize: '0.95rem' }}>
-                        Transformar
+                        Contáctanos
                     </Link>
                 </div>
 
@@ -201,7 +201,7 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                         style={{ padding: '0.75rem 1.5rem', fontSize: '1rem', marginTop: '0.5rem' }}
                     >
-                        Transformar
+                        Contáctanos
                     </Link>
                 </div>
             )}
