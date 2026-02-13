@@ -16,7 +16,7 @@ import isoAi from '../assets/iso-ai.png';
 import isoCloud from '../assets/iso-cloud.png';
 import isometricCta from '../assets/isometric-cta.png';
 import bitrix1 from '../assets/Bitrix-1.jpg';
-import bitrix2 from '../assets/bitrix.jpg';
+import bitrix2 from '../assets/Bitrix.jpg';
 
 const ServicesCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
