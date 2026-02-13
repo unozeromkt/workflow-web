@@ -71,7 +71,6 @@ const WeAre = () => {
                             fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
                             transition: 'all 0.3s ease',
                             margin: '0 auto',
-                            display: 'inline-flex'
                         }}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.background = '#55B3D9';
