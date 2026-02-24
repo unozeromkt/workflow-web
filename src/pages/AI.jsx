@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bot, Check, LayoutGrid, Database, LineChart, Puzzle, Brain, PlugZap, RefreshCw, Cog, BadgeCheck, PlayCircle } from 'lucide-react';
+import { Bot, Check, LayoutGrid, Database, LineChart, Puzzle, Brain, PlugZap, RefreshCw, Cog, BadgeCheck } from 'lucide-react';
 import aiVisual from '../assets/ai-visual.png';
 import aiBotPhoto from '../assets/AIBOT.jpg';
 import ScrollRevealItem from '../components/ScrollRevealItem';
@@ -13,14 +13,14 @@ const AI = () => {
             accent: '#55B3D9'
         },
         {
-            title: 'Entrenamiento & Co-creación',
-            desc: 'Diseñamos modelos junto a tu equipo con laboratorios MLOps y experimentos controlados.',
+            title: 'Entrenamiento y Personalización',
+            desc: 'Diseñamos y ajustamos modelos junto a tu equipo para personalizar comportamientos según tus procesos.',
             icon: Brain,
             accent: '#0264A0'
         },
         {
-            title: 'Integración',
-            desc: 'Acoplamos APIs, CRM y procesos con conectores orquestados y pruebas de carga.',
+            title: 'Integración de Ecosistema',
+            desc: 'Acoplamos APIs, CRM y operaciones clave para que los agentes IA gobiernen todo tu stack.',
             icon: PlugZap,
             accent: '#0394D0'
         },
@@ -69,29 +69,35 @@ const AI = () => {
                             Vaya más allá de los chatbots tradicionales. Implementamos inteligencia autónoma capaz de gestionar su CRM, cerrar ventas y administrar su ecosistema digital 24/7.
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                            <button style={{ 
-                                padding: '0.95rem 2.5rem', 
-                                fontSize: '1rem',
-                                background: '#55B3D9',
-                                color: '#010D26',
-                                border: 'none',
-                                borderRadius: '50px',
-                                fontWeight: '700',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s ease'
-                            }}
-                            onMouseEnter={(e) => {
-                                e.target.style.transform = 'translateY(-2px)';
-                                e.target.style.boxShadow = '0 10px 25px rgba(85, 179, 217, 0.4)';
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.transform = 'translateY(0)';
-                                e.target.style.boxShadow = 'none';
-                            }}
-                            >Probar AIBot24 en Bitrix24 →</button>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#0264A0', fontWeight: 600 }}>
-                                <PlayCircle size={24} /> Ver demo autónoma
-                            </div>
+                            <button
+                                style={{ 
+                                    padding: '0.95rem 2.5rem', 
+                                    fontSize: '1rem',
+                                    background: '#55B3D9',
+                                    color: '#010D26',
+                                    border: 'none',
+                                    borderRadius: '50px',
+                                    fontWeight: '700',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                onClick={() => {
+                                    const section = document.getElementById('aibot24');
+                                    if (section) {
+                                        section.scrollIntoView({ behavior: 'smooth' });
+                                    }
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.transform = 'translateY(-2px)';
+                                    e.target.style.boxShadow = '0 10px 25px rgba(85, 179, 217, 0.4)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.transform = 'translateY(0)';
+                                    e.target.style.boxShadow = 'none';
+                                }}
+                            >
+                                Saber más →
+                            </button>
                         </div>
                     </div>
                     <div style={{ position: 'relative' }}>
@@ -124,7 +130,7 @@ const AI = () => {
                 </div>
             </section>
 
-            <section style={{ 
+            <section id="aibot24" style={{ 
                 padding: '4rem 0',
                 width: '100vw',
                 marginLeft: 'calc(-50vw + 50%)',
@@ -168,43 +174,22 @@ const AI = () => {
                                 <span style={{ display: 'block', marginTop: '0.35rem', fontSize: '0.85rem', color: 'rgba(11,27,58,0.65)', fontWeight: 600, letterSpacing: '0.15em' }}>powered by WORKFLOW</span>
                             </h2>
                             <p style={{ color: 'rgba(11,27,58,0.75)', fontSize: '1.05rem', marginBottom: '2rem', lineHeight: 1.7 }}>
-                                El primer agente autónomo del Marketplace Bitrix24 diseñado para dominar tu operación y liberar a tus equipos.
+                                El primer Agente Autónomo diseñado para dominar tu empresa.
                             </p>
                             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.3rem' }}>
                                 {[
-                                    {
-                                        title: 'Gestión Inteligente de CRM',
-                                        desc: 'Crea prospectos, actualiza negociaciones y califica leads automáticamente para tu equipo comercial.'
-                                    },
-                                    {
-                                        title: 'Cierre de Ventas y Cotización',
-                                        desc: 'Genera cotizaciones en tiempo real y guía al cliente hasta el cierre dentro del flujo Bitrix24.'
-                                    },
-                                    {
-                                        title: 'Omnicanalidad Activa',
-                                        desc: 'Administra conversaciones en redes sociales manteniendo la voz de tu marca en cada interacción.'
-                                    },
-                                    {
-                                        title: 'Agenda y Seguimiento',
-                                        desc: 'Consulta calendarios, programa visitas técnicas y coordina agendas según disponibilidad del equipo.'
-                                    },
-                                    {
-                                        title: 'Conexión Total',
-                                        desc: 'Se integra con e-commerce y Project Management para disparar tareas automáticas tras cada venta exitosa.'
-                                    },
-                                    {
-                                        title: 'Lo que tú quieras',
-                                        desc: 'Entrenamos al agente para cualquier función administrativa, incluso conectándolo con otros sistemas internos.'
-                                    }
-                                ].map((feat) => (
-                                    <li key={feat.title} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                                    'Gestión Inteligente de CRM.',
+                                    'Cierre de Ventas y Cotización en tiempo real.',
+                                    'Omnicanalidad activa.',
+                                    'Agenda y seguimiento automatizado.',
+                                    'Integración con e-commerce y Project Management.',
+                                    'Capacidad para desempeñar cualquier función administrativa delegada.'
+                                ].map((feature) => (
+                                    <li key={feature} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                                         <div style={{ background: 'rgba(2,100,160,0.12)', padding: '6px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '26px', height: '26px', flexShrink: 0 }}>
                                             <Check size={14} color="#0264A0" />
                                         </div>
-                                        <div>
-                                            <strong style={{ display: 'block', fontSize: '1rem', marginBottom: '0.25rem', color: '#0b1b3a' }}>{feat.title}</strong>
-                                            <span style={{ color: 'rgba(11,27,58,0.7)', lineHeight: 1.6 }}>{feat.desc}</span>
-                                        </div>
+                                        <span style={{ color: '#0b1b3a', lineHeight: 1.6, fontWeight: 600 }}>{feature}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -237,28 +222,28 @@ const AI = () => {
                     textAlign: 'center',
                     color: 'var(--text-primary-dark)',
                     fontWeight: '900'
-                }}>Portafolio IA</h2>
+                }}>Otras Implementaciones de IA</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
                     {[
                         { 
                             icon: Database, 
-                            title: 'Arquitectura de Decisiones', 
-                            desc: 'Orquestamos modelos predictivos que conectan CRM, inventarios y finanzas para que cada decisión tenga contexto y KPIs en tiempo real.' 
+                            title: 'IA Strategy y Machine Learning predictivo.', 
+                            desc: '' 
                         },
                         { 
                             icon: Bot, 
-                            title: 'Agentes de Servicio', 
-                            desc: 'Agentes autónomos multilingües que resuelven tickets, consultan bases de conocimiento y escalan casos críticos sin perder trazabilidad.' 
+                            title: 'Agentes avanzados de servicio al cliente.', 
+                            desc: '' 
                         },
                         { 
                             icon: LayoutGrid, 
-                            title: 'Optimización de Workflows', 
-                            desc: 'Automatizamos procesos interdepartamentales con IA que asigna tareas, documenta actividades y libera horas operativas.' 
+                            title: 'Automatización interdepartamental.', 
+                            desc: '' 
                         },
                         { 
                             icon: LineChart, 
-                            title: 'Visión Artificial', 
-                            desc: 'Analizamos imágenes y video para control de calidad, seguridad o retail, integrando la data con Bitrix24 y tableros ejecutivos.' 
+                            title: 'Visión Artificial e IA Generativa.', 
+                            desc: '' 
                         }
                     ].map((item, i) => (
                         <ScrollRevealItem key={i} delay={i * 0.1}>
@@ -286,11 +271,13 @@ const AI = () => {
                             </div>
                             <h3 style={{ 
                                 fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', 
-                                marginBottom: '1rem',
+                                marginBottom: item.desc ? '1rem' : 0,
                                 color: 'var(--text-primary-dark)',
                                 fontWeight: '700'
                             }}>{item.title}</h3>
-                            <p style={{ color: 'var(--text-secondary-dark)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', lineHeight: 1.7 }}>{item.desc}</p>
+                            {item.desc && (
+                                <p style={{ color: 'var(--text-secondary-dark)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', lineHeight: 1.7 }}>{item.desc}</p>
+                            )}
                         </div>
                         </ScrollRevealItem>
                     ))}
@@ -350,7 +337,7 @@ const AI = () => {
             </section>
 
             <section style={{ 
-                padding: '6rem 0', 
+                padding: '6rem 2rem', 
                 background: '#f2f5fb',
                 width: '100vw',
                 marginLeft: 'calc(-50vw + 50%)',

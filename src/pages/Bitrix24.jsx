@@ -35,7 +35,7 @@ const Bitrix24 = () => {
                     marginBottom: '2.5rem',
                     lineHeight: 1.8
                 }}>
-                    Gold Partner oficial con enfoque en arquitectura, automatización y resultados.
+                    Como Gold Partner oficial, transformamos Bitrix24 en el centro neurálgico de su operación, integrando CRM, automatización y comunicación en una sola fuente de verdad.
                 </p>
                 <a href="https://www.bitrix24.com/partners/?ID=11605791" target="_blank" rel="noreferrer" style={{
                     display: 'inline-flex',
@@ -91,26 +91,20 @@ const Bitrix24 = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
                     {[
                         {
-                            title: 'Propuesta',
+                            title: 'Gold Partner',
                             color: '#0264A0',
-                            items: ['Implementaciones a medida', 'Arquitectura avanzada', 'Soporte de ingeniería especializada']
+                            items: ['Experiencia Certificada.', 'Implementaciones a Medida.', 'Soporte de Ingeniería especializado.']
                         },
                         {
-                            title: 'Ecosistema',
+                            title: 'Ecosistema Bitrix24 x WORKFLOW',
                             color: '#0264A0',
                             iconItems: [
-                                { text: 'CRM Omnicanal', icon: Layers },
-                                { text: 'Oficina Virtual', icon: Box },
-                                { text: 'AIBot24', icon: Settings },
-                                { text: 'Integraciones API y WhatsApp', icon: ArrowRight }
+                                { text: 'CRM Avanzado y Omnicanalidad.', icon: Layers },
+                                { text: 'Oficina Virtual Integral.', icon: Box },
+                                { text: 'AIBot24.', icon: Settings },
+                                { text: 'Integraciones y API.', icon: ArrowRight }
                             ]
-                        },
-                        {
-                            title: 'Metodología',
-                            color: '#0264A0',
-                            methodology: true,
-                            steps: ['Auditoría', 'Configuración', 'Gestión del Cambio', 'Optimización Continua']
-                        }
+                                }
                     ].map((card, idx) => (
                         <ScrollRevealItem key={idx} delay={idx * 0.1}>
                         <div className="glass" style={{
@@ -167,32 +161,89 @@ const Bitrix24 = () => {
                                 </ul>
                             )}
                             
-                            {card.methodology && (
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                                    {card.steps.map((step, i) => (
-                                        <React.Fragment key={i}>
-                                            <div style={{ 
-                                                padding: '0.75rem',
-                                                background: 'rgba(2, 100, 160, 0.1)',
-                                                borderRadius: '6px',
-                                                textAlign: 'center',
-                                                color: 'var(--text-primary-dark)',
-                                                fontSize: 'clamp(0.85rem, 1.5vw, 0.95rem)',
-                                                fontWeight: '500'
-                                            }}>
-                                                {i + 1}. {step}
-                                            </div>
-                                            {i < card.steps.length - 1 && (
-                                                <div style={{ textAlign: 'center', color: '#0264A0', opacity: 0.5 }}>↓</div>
-                                            )}
-                                        </React.Fragment>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                         </ScrollRevealItem>
                     ))}
                 </div>
+                </div>
+            </section>
+
+            <section style={{
+                padding: '6rem 0',
+                width: '100vw',
+                marginLeft: 'calc(-50vw + 50%)',
+                marginRight: 'calc(-50vw + 50%)',
+                background: 'linear-gradient(135deg, #F7FBFF 0%, #FFFFFF 60%)'
+            }}>
+                <div className="container" style={{ display: 'grid', gap: '2.5rem', gridTemplateColumns: '1fr 1fr', alignItems: 'center' }}>
+                    <div>
+                        <p style={{
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.35rem',
+                            color: '#0264A0',
+                            fontSize: '0.85rem',
+                            fontWeight: 600,
+                            marginBottom: '1rem'
+                        }}>Metodología</p>
+                        <h2 style={{
+                            fontSize: 'clamp(2rem, 4vw, 3rem)',
+                            fontWeight: 900,
+                            marginBottom: '1.5rem',
+                            lineHeight: 1.2,
+                            color: 'var(--text-primary-dark)'
+                        }}>Implementación Bitrix24 con precisión quirúrgica</h2>
+                        <p style={{
+                            color: 'var(--text-secondary-dark)',
+                            lineHeight: 1.7,
+                            fontSize: '1.05rem'
+                        }}>
+                            Nuestros ingenieros orquestan la adopción completa de Bitrix24 desde la auditoría hasta la optimización continua, asegurando alineación con objetivos estratégicos y adopción total del equipo.
+                        </p>
+                    </div>
+                    <div className="glass" style={{
+                        background: 'rgba(255,255,255,0.85)',
+                        border: '1px solid rgba(2, 100, 160, 0.1)',
+                        borderRadius: '24px',
+                        padding: '2.5rem'
+                    }}>
+                        <div style={{ display: 'grid', gap: '1.5rem' }}>
+                            {['Auditoría y Diagnóstico', 'Configuración y Arquitectura', 'Gestión del Cambio', 'Optimización Continua'].map((step, index) => (
+                                <div key={step} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                                    <div style={{
+                                        width: '40px',
+                                        height: '40px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(2, 100, 160, 0.12)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        color: '#0264A0',
+                                        fontWeight: 700,
+                                        fontSize: '1rem'
+                                    }}>{index + 1}</div>
+                                    <div>
+                                        <p style={{
+                                            margin: 0,
+                                            fontWeight: 700,
+                                            color: 'var(--text-primary-dark)' ,
+                                            textAlign: 'left'
+                                        }}>{step}</p>
+                                        <p style={{
+                                            margin: '0.35rem 0 0 0',
+                                            color: 'var(--text-secondary-dark)',
+                                            lineHeight: 1.6,
+                                            textAlign: 'left'
+                                        }}>
+                                            {index === 0 && 'Analizamos procesos, datos y objetivos para definir el roadmap ideal.'}
+                                            {index === 1 && 'Configuramos módulos, automatizaciones y seguridad acorde a su arquitectura.'}
+                                            {index === 2 && 'Acompañamos al equipo con playbooks, entrenamiento y métricas de adopción.'}
+                                            {index === 3 && 'Monitoreamos resultados, ajustamos flujos y ampliamos capacidades.'}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -228,14 +279,6 @@ const Bitrix24 = () => {
                                 textDecoration: 'none',
                                 boxShadow: '0 15px 35px rgba(85, 179, 217, 0.35)'
                             }}>Agendar consultoría</a>
-                            <a href="https://www.bitrix24.com" target="_blank" rel="noreferrer" style={{
-                                padding: '0.95rem 2.5rem',
-                                borderRadius: '999px',
-                                border: '1px solid rgba(255,255,255,0.4)',
-                                color: '#fff',
-                                textDecoration: 'none',
-                                fontWeight: 600
-                            }}>Ver casos Bitrix24</a>
                         </div>
                     </div>
                     <div className="glass" style={{

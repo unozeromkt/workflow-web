@@ -44,7 +44,7 @@ const WeAre = () => {
                         WebkitTextFillColor: 'transparent',
                         margin: '0 auto 2rem auto'
                     }}>
-                        Expertos en la Intersección de Tecnología y Estrategia
+                        Más que código, diseñamos el futuro de las organizaciones.
                     </h1>
                     <p style={{ 
                         fontSize: 'clamp(1.05rem, 2.5vw, 1.25rem)', 
@@ -54,7 +54,7 @@ const WeAre = () => {
                         marginBottom: '2rem',
                         margin: '0 auto 2rem auto'
                     }}>
-                        Fusionamos ingeniería, estrategia y tecnología avanzada para transformar vidas y modelos de negocio.
+                        En WORKFLOW, fusionamos la excelencia en ingeniería con una visión estratégica para transformar vidas y modelos de negocio a través de alta tecnología.
                     </p>
                     <Link 
                         to="/contacto"
@@ -114,7 +114,7 @@ const WeAre = () => {
                                 marginBottom: '1.5rem', 
                                 lineHeight: 1.8
                             }}>
-                                No somos solo una consultora tecnológica; somos el partner estratégico que ayuda a las organizaciones a navegar la complejidad de la era digital.
+                                No somos solo una consultora de tecnología; somos el partner estratégico que las organizaciones necesitan para navegar la complejidad de la era digital.
                             </p>
                             <div style={{ 
                                 padding: '2rem', 
@@ -128,7 +128,7 @@ const WeAre = () => {
                                     color: 'var(--text-primary-dark)',
                                     margin: 0,
                                     lineHeight: 1.7
-                                }}>"Nuestro compromiso es la excelencia técnica sin compromisos."</p>
+                                }}>Nos dedicamos a potenciar el crecimiento y la productividad de las empresas, agregando valor real mediante soluciones Cloud e inteligencia aplicada que impulsan el desarrollo profesional de los equipos de trabajo.</p>
                             </div>
                         </div>
                         <div className="glass" style={{ 
@@ -204,10 +204,10 @@ const WeAre = () => {
                         margin: '0 auto'
                     }}>
                         {[
-                            { title: 'Alineación Estratégica', icon: Target, desc: 'Cada línea de código responde a un objetivo de negocio.' },
-                            { title: 'Excelencia Técnica', icon: Zap, desc: 'Estándares globales de arquitectura y clean code.' },
-                            { title: 'Transparencia Radical', icon: UserCheck, desc: 'Visibilidad total del proceso para nuestros socios.' },
-                            { title: 'Seguridad por Diseño', icon: ShieldCheck, desc: 'Protección de datos desde la concepción del sistema.' }
+                            { title: 'Alineación Estratégica Total', icon: Target, desc: 'No vemos solo el proyecto, vemos su negocio. Cada solución tecnológica está diseñada para cumplir sus objetivos misionales.' },
+                            { title: 'Excelencia Técnica sin Compromisos', icon: Zap, desc: 'Nuestro equipo abarca disciplinas desde Arquitectura hasta QA, garantizando soluciones robustas, escalables y seguras.' },
+                            { title: 'Agilidad y Transparencia', icon: UserCheck, desc: 'Trabajamos bajo marcos Scrum y Kanban, asegurando visibilidad total y entregas constantes de valor.' },
+                            { title: 'Seguridad por Diseño', icon: ShieldCheck, desc: 'La ciberseguridad no es un añadido; implementamos prácticas de codificación segura desde la fase inicial de cada diseño.' }
                         ].map((item, i) => (
                             <ScrollRevealItem key={i} delay={i * 0.1}>
                                 <div className="glass" style={{ 
@@ -259,6 +259,7 @@ const WeAre = () => {
                     </div>
                 </div>
             </section>
+
         </>
     );
 };

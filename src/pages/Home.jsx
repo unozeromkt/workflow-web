@@ -25,26 +25,37 @@ const ServicesCarousel = () => {
     const services = [
         {
             icon: Sparkles,
-            title: 'AI Strategy & Arquitectura',
-            desc: 'Cerebros digitales que toman decisiones basadas en datos en tiempo real.',
+            title: 'AI Strategy & Arquitectura de Decisiones',
+            paragraphs: [
+                'Implementamos modelos de IA que leen tus datos en tiempo real para anticipar el mercado y guiar decisiones estratégicas.',
+                'Convertimos la data en activos accionables con modelos predictivos y Machine Learning aplicados al negocio.'
+            ],
             link: '/ia'
         },
         {
             icon: Zap,
-            title: 'Ecosistemas Cloud',
-            desc: 'Arquitectura escalable en AWS/Azure con seguridad enterprise integrada.',
+            title: 'Ecosistemas Digitales Escalables (Software Development)',
+            paragraphs: [
+                'Diseñamos software nativo en la nube que actúa como el sistema nervioso de tu operación.',
+                'Construimos en AWS, Azure o Google Cloud con ciberseguridad desde el diseño para apps móviles o ERPs complejos.'
+            ],
             link: '/soluciones'
         },
         {
             icon: Users,
-            title: 'Intelligent BPO',
-            desc: 'Contact Centers aumentados con IA que operan 24/7 con máxima eficiencia.',
+            title: 'Intelligent Business Process Outsourcing (iBPO)',
+            paragraphs: [
+                'Delegamos operaciones a células híbridas potenciadas por automatización y agentes inteligentes.',
+                'Operamos contact centers y equipos comerciales para elevar servicio, prospección y ventas automatizadas.'
+            ],
             link: '/soluciones'
         },
         {
             icon: Shield,
-            title: 'Consultoría Bitrix24',
-            desc: 'Centralización operativa total en una sola plataforma integrada.',
+            title: 'Consultoría 360° - Bitrix24 Gold Partner',
+            paragraphs: [
+                'Como Gold Partner Bitrix24 integramos CRM, workflows y comunicaciones en una oficina virtual que elimina cuellos de botella.'
+            ],
             link: '/bitrix24'
         }
     ];
@@ -205,24 +216,32 @@ const Home = () => {
                                 </div>
                             </div>
 
-                            <h1 className="hero-title" style={{ marginBottom: '2rem', textAlign: 'left' }}>
-                                Soluciones Empresariales <br />
-                                <span style={{
-                                    background: 'linear-gradient(135deg, #0264A0 0%, #55B3D9 100%)',
-                                    backgroundClip: 'text',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent'
-                                }}>Bitrix24 Integradas</span>
+                            <h1 className="hero-title" style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
+                                Ingeniería de Alto Impacto para la Era de la Inteligencia Artificial
                             </h1>
 
-                            <p className="hero-description" style={{ fontSize: '1.125rem', maxWidth: '500px', marginBottom: '3rem', color: 'var(--text-secondary-dark)', lineHeight: '1.7' }}>
-                                Centralización operativa total. Equipos de alto rendimiento en una plataforma integrada que unifica ventas, marketing y operaciones.
+                            <p
+                                className="hero-tagline"
+                                style={{
+                                    fontSize: '1.25rem',
+                                    fontWeight: 600,
+                                    color: 'var(--text-primary-dark)',
+                                    lineHeight: 1.6,
+                                    marginBottom: '1.25rem',
+                                    maxWidth: '640px'
+                                }}
+                            >
+                                Diseñamos la Inteligencia que acelera tu negocio.
+                            </p>
+
+                            <p className="hero-description" style={{ fontSize: '1.125rem', maxWidth: '640px', marginBottom: '3rem', color: 'var(--text-secondary-dark)', lineHeight: '1.7' }}>
+                                Fusionamos la excelencia en ingeniería con visión estratégica para convertir la complejidad operativa en ventaja competitiva.
                             </p>
 
                             <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                                <a href="https://wa.me/3005243896" className="btn btn-primary">
+                                <Link to="/contacto" className="btn btn-primary">
                                     Iniciar Implementación <ArrowRight size={20} />
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -583,6 +602,17 @@ const Home = () => {
                             background: 'linear-gradient(90deg, transparent, #55B3D9, transparent)',
                             margin: '0 auto 2rem auto'
                         }} />
+
+                        <p style={{
+                            fontSize: '0.95rem',
+                            letterSpacing: '0.3rem',
+                            textTransform: 'uppercase',
+                            color: '#55B3D9',
+                            marginBottom: '1rem',
+                            fontWeight: 600
+                        }}>
+                            Propuesta de Valor
+                        </p>
                         
                         <h2 style={{
                             fontSize: 'clamp(2rem, 4vw, 2.5rem)',
@@ -591,29 +621,27 @@ const Home = () => {
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
-                            marginBottom: '2rem'
-                        }}>
-                            ¿Por qué Workflow?
-                        </h2>
-                        <p style={{
-                            fontSize: 'clamp(1rem, 3vw, 1.25rem)',
-                            fontWeight: '600',
-                            lineHeight: '1.6',
-                            color: '#55B3D9',
-                            maxWidth: '700px',
-                            margin: '0 auto 1.5rem auto'
+                            marginBottom: '1.5rem'
                         }}>
                             Más ventas, más eficiencia, más resultados.
-                        </p>
+                        </h2>
                         <p style={{
                             fontSize: 'clamp(0.95rem, 2vw, 1.125rem)',
                             lineHeight: '1.8',
                             color: 'var(--text-secondary-dark)',
                             maxWidth: '700px',
-                            margin: '0 auto 4rem auto'
+                            margin: '0 auto 3rem auto'
                         }}>
                             Transformamos flujos de trabajo tradicionales en ecosistemas inteligentes donde la IA, Soluciones Cloud y el Talento Humano convergen para escalar tu rentabilidad.
                         </p>
+                        <h3 style={{
+                            fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
+                            fontWeight: 800,
+                            color: 'var(--text-primary-dark)',
+                            marginBottom: '3rem'
+                        }}>
+                            El Factor Diferencial
+                        </h3>
                     </div>
 
                     {/* Content Grid */}
@@ -843,7 +871,7 @@ const Home = () => {
                                 marginBottom: '2rem',
                                 lineHeight: '1.2'
                             }}>
-                                ¿Listo para escalar tu operación?
+                                ¿Listo para llevar tu empresa al siguiente nivel con WORKFLOW?
                             </h2>
                             <p style={{
                                 fontSize: '1.125rem',
@@ -851,7 +879,7 @@ const Home = () => {
                                 marginBottom: '3rem',
                                 opacity: 0.95
                             }}>
-                                Agenda una sesión de diagnóstico estratégico sin costo. Nuestros expertos analizarán tu situación y te presentarán un plan de acción personalizado.
+                                No dejes tu crecimiento al azar. Hablemos sobre cómo nuestras soluciones de ingeniería pueden transformar tu modelo de negocio hoy mismo.
                             </p>
                             <Link
                                 to="/contacto"
@@ -1181,7 +1209,7 @@ const ServicesSection = () => {
                         marginBottom: '1.25rem',
                         lineHeight: '1.2'
                     }}>
-                        Soluciones de Ingeniería
+                        Nuestras Disciplinas
                     </h2>
                     <p style={{
                         fontSize: 'clamp(0.9rem, 2.5vw, 1.125rem)',
@@ -1189,10 +1217,10 @@ const ServicesSection = () => {
                         color: 'var(--text-secondary-dark)',
                         marginBottom: '2rem'
                     }}>
-                        Cuatro verticales integradas para resolver problemas complejos y transformar tu operación con tecnología de punta.
+                        AI Strategy & Arquitectura de Decisiones · Ecosistemas Digitales Escalables (Software Development) · Intelligent Business Process Outsourcing (iBPO) · Consultoría 360° - Bitrix24 Gold Partner.
                     </p>
                     <Link
-                        to="/soluciones"
+                        to="/contacto"
                         style={{
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -1265,14 +1293,26 @@ const ServicesSection = () => {
                                     {currentService.title}
                                 </h3>
 
-                                <p style={{
-                                    fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
-                                    lineHeight: '1.6',
-                                    color: 'var(--text-secondary-dark)',
-                                    margin: '0 0 1.5rem 0'
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.9rem',
+                                    marginBottom: '1.5rem'
                                 }}>
-                                    {currentService.desc}
-                                </p>
+                                    {currentService.paragraphs.map((paragraph, idx) => (
+                                        <p
+                                            key={idx}
+                                            style={{
+                                                fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
+                                                lineHeight: '1.6',
+                                                color: 'var(--text-secondary-dark)',
+                                                margin: 0
+                                            }}
+                                        >
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                                </div>
 
                                 <Link
                                     to={currentService.link}
@@ -1369,7 +1409,7 @@ const ServicesSection = () => {
                     marginBottom: '2rem',
                     lineHeight: '1.2'
                 }}>
-                    Soluciones de Ingeniería
+                    Nuestras Disciplinas
                 </h2>
                 <p style={{
                     fontSize: 'clamp(1rem, 2.5vw, 1.125rem)',
@@ -1377,10 +1417,10 @@ const ServicesSection = () => {
                     color: 'var(--text-secondary-dark)',
                     marginBottom: '3rem'
                 }}>
-                    Cuatro verticales integradas para resolver problemas complejos y transformar tu operación con tecnología de punta.
+                    AI Strategy & Arquitectura de Decisiones · Ecosistemas Digitales Escalables (Software Development) · Intelligent Business Process Outsourcing (iBPO) · Consultoría 360° - Bitrix24 Gold Partner.
                 </p>
                 <Link
-                    to="/soluciones"
+                    to="/contacto"
                     style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -1474,15 +1514,27 @@ const ServicesSection = () => {
                                 </h3>
 
                                 {/* Description */}
-                                <p style={{
-                                    fontSize: '0.95rem',
-                                    lineHeight: '1.6',
-                                    color: 'var(--text-secondary-dark)',
-                                    margin: '0 0 2rem 0',
-                                    maxWidth: '100%'
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '0.75rem',
+                                    marginBottom: '2rem'
                                 }}>
-                                    {service.desc}
-                                </p>
+                                    {service.paragraphs.map((paragraph, idx) => (
+                                        <p
+                                            key={idx}
+                                            style={{
+                                                fontSize: '0.95rem',
+                                                lineHeight: '1.6',
+                                                color: 'var(--text-secondary-dark)',
+                                                margin: 0,
+                                                maxWidth: '100%'
+                                            }}
+                                        >
+                                            {paragraph}
+                                        </p>
+                                    ))}
+                                </div>
 
                                 {/* Explore Button */}
                                 <Link

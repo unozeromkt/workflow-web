@@ -8,27 +8,44 @@ const Solutions = () => {
     const solutions = [
         { 
             title: "IA Strategy & Data Science", 
-            desc: "Transformamos datos complejos en decisiones accionables con modelos propios.",
+            desc: "Transformamos datos en activos estratégicos.",
             tag: 'IA + DataOps',
-            highlights: ['Laboratorios MLOps', 'Modelos predictivos en producción', 'Gobernanza y ética de datos']
+            highlights: [
+                'Modelos Predictivos y Machine Learning para la toma de decisiones.',
+                'Arquitectura de Decisiones basada en análisis en tiempo real.',
+                'IA aplicada a modelos de negocio.'
+            ]
         },
         { 
             title: "Ecosistemas Digitales & Software", 
-            desc: "Diseñamos plataformas modulares con arquitectura cloud-native y seguridad enterprise.",
+            desc: "Creamos el sistema nervioso digital de su empresa.",
             tag: 'Cloud + DevX',
-            highlights: ['Arquitectura componible', 'Automatización CI/CD', 'Observabilidad full-stack']
+            highlights: [
+                'Desarrollo Full-Stack y Móvil.',
+                'Modernización Cloud en AWS, Azure y Google Cloud.',
+                'Ciberseguridad Integral desde diseño.'
+            ]
         },
         { 
-            title: "Intelligent Process Outsourcing", 
-            desc: "Operaciones híbridas con equipos aumentados por IA para cubrir 24/7.",
+            title: "Intelligent Process Outsourcing (iBPO)", 
+            desc: "Eficiencia operativa potenciada por automatización inteligente y personal altamente calificado.",
             tag: 'BPO Augmentado',
-            highlights: ['Centros de comando omnicanal', 'Bots + humanos en co-autoría', 'KPIs en tiempo real']
+            highlights: [
+                'Contact Center Inteligente.',
+                'Dirección Comercial y Ventas.',
+                'Automatización de flujos críticos.',
+                'Dirección tecnológica especializada.'
+            ]
         },
         { 
-            title: "Consultoría 360° & Bitrix24", 
-            desc: "Centralizamos procesos comerciales, marketing y operaciones en un hub integrado.",
+            title: "Ecosistema Bitrix24 & Consultoría 360°", 
+            desc: "Eliminamos el caos operativo con una única fuente de verdad.",
             tag: 'Bitrix24 Elite',
-            highlights: ['Orquestación end-to-end', 'Integraciones API & WhatsApp', 'Playbooks de adopción']
+            highlights: [
+                'Implementamos oficinas virtuales, Project Management, Workflows y CRM avanzado.',
+                'Definimos hojas de ruta para migración digital.',
+                'Entrenamos equipos para asegurar adopción exitosa.'
+            ]
         }
     ];
 
@@ -40,6 +57,17 @@ const Solutions = () => {
 
     return (
         <>
+            <style>{`
+                .hero-chip-row {
+                    flex-wrap: nowrap;
+                }
+
+                @media (max-width: 768px) {
+                    .hero-chip-row {
+                        flex-wrap: wrap;
+                    }
+                }
+            `}</style>
             <section style={{ 
                 padding: '8rem 0 4rem 0',
                 width: '100vw',
@@ -55,6 +83,14 @@ const Solutions = () => {
                 }}></div>
                 <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', position: 'relative', zIndex: 1 }}>
                 <div>
+                    <p style={{
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.4rem',
+                        color: '#0264A0',
+                        fontSize: '0.85rem',
+                        fontWeight: 600,
+                        marginBottom: '1.25rem'
+                    }}>Enfoque</p>
                     <h1 style={{ 
                         fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', 
                         fontWeight: '900', 
@@ -67,7 +103,7 @@ const Solutions = () => {
                             backgroundClip: 'text',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent'
-                        }}>diseñadas para escalar</span>
+                        }}>diseñadas para escalar.</span>
                     </h1>
                     <p style={{ 
                         fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', 
@@ -75,17 +111,22 @@ const Solutions = () => {
                         marginBottom: '2rem',
                         lineHeight: 1.8
                     }}>
-                        Construimos ecosistemas inteligentes que fusionan IA, Cloud y estrategia para resultados medibles.
+                        No solo entregamos herramientas; construimos ecosistemas inteligentes que fusionan IA, Cloud y Metodología estratégica para garantizar resultados cuantificables.
                     </p>
                     <div style={{ paddingLeft: '1rem', borderLeft: '4px solid #0264A0', background: 'rgba(2, 100, 160, 0.05)', padding: '1.5rem 1rem 1.5rem 1rem', borderRadius: '8px' }}>
-                        <p style={{ fontStyle: 'italic', color: 'var(--text-primary-dark)', margin: 0 }}>"No solo implementamos tecnología, diseñamos el futuro de su operación."</p>
+                        <p style={{ fontStyle: 'italic', color: 'var(--text-primary-dark)', margin: 0 }}>Para garantizar resultados cuantificables.</p>
                     </div>
-                    <div style={{ 
-                        display: 'flex', 
-                        flexWrap: 'wrap',
-                        gap: '1rem',
-                        marginTop: '2.5rem'
-                    }}>
+                    <div 
+                        className="hero-chip-row"
+                        style={{ 
+                            display: 'flex', 
+                            flexWrap: 'nowrap',
+                            gap: '1rem',
+                            marginTop: '2.5rem',
+                            overflowX: 'auto',
+                            paddingBottom: '0.25rem'
+                        }}
+                    >
                         {['Arquitectura cloud-native', 'IA aplicada al negocio', 'Gobernanza & Compliance'].map((chip, idx) => (
                             <span key={idx} style={{
                                 padding: '0.35rem 1rem',
@@ -247,18 +288,21 @@ const Solutions = () => {
                                 {sol.highlights.map((item, idx) => (
                                     <li key={idx} style={{
                                         display: 'flex',
-                                        alignItems: 'center',
-                                        gap: '0.5rem',
+                                        alignItems: 'flex-start',
+                                        gap: '0.75rem',
                                         fontSize: '0.95rem',
-                                        color: 'var(--text-primary-dark)'
+                                        color: 'var(--text-primary-dark)',
+                                        lineHeight: 1.5
                                     }}>
                                         <span style={{
-                                            width: '6px',
-                                            height: '6px',
+                                            width: '8px',
+                                            height: '8px',
                                             borderRadius: '50%',
-                                            background: '#0264A0'
+                                            background: '#0264A0',
+                                            marginTop: '0.45rem',
+                                            flexShrink: 0
                                         }}></span>
-                                        {item}
+                                        <span style={{ display: 'block' }}>{item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -308,7 +352,7 @@ const Solutions = () => {
                             fontSize: '0.85rem',
                             fontWeight: 600,
                             marginBottom: '1rem'
-                        }}>Sello técnico workflow</p>
+                        }}>Diferenciadores</p>
                         <h2 style={{
                             fontSize: 'clamp(2rem, 4vw, 3rem)',
                             fontWeight: 900,
@@ -334,7 +378,7 @@ const Solutions = () => {
                             }}>
                                 Contáctanos Ahora
                             </Link>
-                            <Link to="/soluciones" style={{
+                            <Link to="/contacto" style={{
                                 background: 'transparent',
                                 color: '#fff',
                                 padding: '0.9rem 2rem',
@@ -354,7 +398,7 @@ const Solutions = () => {
                         padding: '2rem',
                         backdropFilter: 'blur(12px)'
                     }}>
-                        {[ 'Metodología ágil aplicada', 'Infraestructura elástica 24/7', 'Seguridad por diseño y compliance' ].map((item, idx) => (
+                        {[ 'Metodología Ágil Garantizada.', 'Infraestructura Elástica.', 'Seguridad por Diseño.' ].map((item, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
                                 alignItems: 'center',

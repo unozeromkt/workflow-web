@@ -34,7 +34,7 @@ const Contact = () => {
                     margin: '0 auto',
                     lineHeight: 1.8
                 }}>
-                    Convertimos desafíos operativos en soluciones escalables.
+                    Estamos listos para escuchar sus desafíos operativos y convertirlos en soluciones de ingeniería escalables.
                 </p>
                 </div>
             </section>
@@ -80,8 +80,8 @@ const Contact = () => {
                                     <Phone size={24} />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>WhatsApp / Teléfono</div>
-                                    <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)' }}>300 524 3896</div>
+                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Consultoría Inmediata (WhatsApp)</div>
+                                    <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)' }}>3005243896</div>
                                 </div>
                             </div>
 
@@ -90,7 +90,7 @@ const Contact = () => {
                                     <Mail size={24} />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Email</div>
+                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Correo Corporativo</div>
                                     <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)' }}>consultoria@weareworkflow.com</div>
                                 </div>
                             </div>
@@ -100,9 +100,9 @@ const Contact = () => {
                                     <MapPin size={24} />
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Presencia Global</div>
+                                    <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Presencia</div>
                                     <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)', lineHeight: '1.5' }}>
-                                        Medellín • Miami • Guayaquil <br /> Lima • Buenos Aires
+                                        Medellín, Miami, Guayaquil, Lima, Buenos Aires.
                                     </div>
                                 </div>
                             </div>

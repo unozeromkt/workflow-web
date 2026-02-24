@@ -73,7 +73,7 @@ body {
 
 /* Typography */
 h1 {
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5vw, 3.5rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   line-height: 1.1;

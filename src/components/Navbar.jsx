@@ -16,7 +16,6 @@ const Navbar = () => {
         { name: 'Soluciones', path: '/soluciones' },
         { name: 'Inteligencia Artificial', path: '/ia' },
         { name: 'Bitrix24', path: '/bitrix24', isLogo: true },
-        { name: 'Contacto', path: '/contacto' },
     ];
 
     return (
