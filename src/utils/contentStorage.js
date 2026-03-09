@@ -41,7 +41,7 @@ const notifyContentUpdated = (page) => {
 
 const readSectionData = async (section, fallbackData) => {
     if (!isSupabaseConfigured || !supabase) {
-        return { data: fallbackData, error: 'Supabase no está configurado.' };
+        return { data: fallbackData, error: 'La configuración de contenido no está disponible.' };
     }
 
     const { data, error } = await supabase
@@ -51,7 +51,7 @@ const readSectionData = async (section, fallbackData) => {
         .maybeSingle();
 
     if (error) {
-        return { data: fallbackData, error: toErrorMessage(error, 'No se pudo leer contenido en Supabase.') };
+        return { data: fallbackData, error: toErrorMessage(error, 'No se pudo leer el contenido.') };
     }
 
     return { data: data?.data || fallbackData, error: null };
@@ -59,7 +59,7 @@ const readSectionData = async (section, fallbackData) => {
 
 const writeSectionData = async (section, sectionData) => {
     if (!isSupabaseConfigured || !supabase) {
-        return 'Supabase no está configurado.';
+        return 'La configuración de contenido no está disponible.';
     }
 
     const { error } = await supabase
@@ -74,7 +74,7 @@ const writeSectionData = async (section, sectionData) => {
         );
 
     if (error) {
-        return toErrorMessage(error, 'No se pudo guardar contenido en Supabase.');
+        return toErrorMessage(error, 'No se pudo guardar el contenido.');
     }
 
     return null;

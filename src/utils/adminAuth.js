@@ -2,7 +2,7 @@ import { isSupabaseConfigured, supabase } from '../lib/supabaseClient';
 
 const notConfiguredResult = {
     ok: false,
-    error: 'Faltan variables de entorno de Supabase en el frontend.'
+    error: 'Faltan variables de configuración en el frontend.'
 };
 
 export const getAdminSession = async () => {

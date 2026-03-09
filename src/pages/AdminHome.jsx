@@ -300,7 +300,7 @@ const AdminHome = () => {
         }
 
         setError('');
-        alert('Cambios guardados para Home en Supabase.');
+        alert('Cambios guardados correctamente.');
     };
 
     const handleResetHome = async () => {
@@ -315,7 +315,7 @@ const AdminHome = () => {
 
         setHomeContent(result.data);
         setError('');
-        alert('Contenido Home restaurado en Supabase.');
+        alert('Contenido restaurado correctamente.');
     };
 
     const handleSaveWeAre = async () => {
@@ -329,7 +329,7 @@ const AdminHome = () => {
         }
 
         setError('');
-        alert('Cambios guardados para We are en Supabase.');
+        alert('Cambios guardados correctamente.');
     };
 
     const handleResetWeAre = async () => {
@@ -344,7 +344,7 @@ const AdminHome = () => {
 
         setWeAreContent(result.data);
         setError('');
-        alert('Contenido We are restaurado en Supabase.');
+        alert('Contenido restaurado correctamente.');
     };
 
     const handleSaveSolutions = async () => {
@@ -358,7 +358,7 @@ const AdminHome = () => {
         }
 
         setError('');
-        alert('Cambios guardados para Soluciones en Supabase.');
+        alert('Cambios guardados correctamente.');
     };
 
     const handleResetSolutions = async () => {
@@ -373,7 +373,7 @@ const AdminHome = () => {
 
         setSolutionsContent(result.data);
         setError('');
-        alert('Contenido Soluciones restaurado en Supabase.');
+        alert('Contenido restaurado correctamente.');
     };
 
     const handleSaveAI = async () => {
@@ -387,7 +387,7 @@ const AdminHome = () => {
         }
 
         setError('');
-        alert('Cambios guardados para IA en Supabase.');
+        alert('Cambios guardados correctamente.');
     };
 
     const handleResetAI = async () => {
@@ -402,7 +402,7 @@ const AdminHome = () => {
 
         setAIContent(result.data);
         setError('');
-        alert('Contenido IA restaurado en Supabase.');
+        alert('Contenido restaurado correctamente.');
     };
 
     const handleSaveBitrix24 = async () => {
@@ -416,7 +416,7 @@ const AdminHome = () => {
         }
 
         setError('');
-        alert('Cambios guardados para Bitrix24 en Supabase.');
+        alert('Cambios guardados correctamente.');
     };
 
     const handleResetBitrix24 = async () => {
@@ -431,7 +431,7 @@ const AdminHome = () => {
 
         setBitrixContent(result.data);
         setError('');
-        alert('Contenido Bitrix24 restaurado en Supabase.');
+        alert('Contenido restaurado correctamente.');
     };
 
     const handleLogout = async () => {
@@ -530,9 +530,6 @@ const AdminHome = () => {
         return (
             <section className="section-dark section-padding" style={{ maxWidth: '560px', margin: '0 auto' }}>
                 <h1 style={{ marginBottom: '1rem' }}>Panel de Edición</h1>
-                <p style={{ marginBottom: '1.5rem', color: 'var(--text-secondary-dark)' }}>
-                    Ingresa con tu usuario admin de Supabase para editar el contenido.
-                </p>
                 <form onSubmit={handleLogin} style={{ display: 'grid', gap: '1rem' }}>
                     <input
                         type="email"
@@ -566,7 +563,7 @@ const AdminHome = () => {
                     </button>
                 </form>
                 <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-secondary-dark)' }}>
-                    Usa credenciales de Authentication en Supabase y marca el perfil con is_admin = true.
+                    Usa credenciales de acceso con permisos de administrador.
                 </p>
             </section>
         );
@@ -796,7 +793,7 @@ const AdminHome = () => {
                 <p style={{ marginBottom: '1rem', color: '#c62828' }}>{error}</p>
             )}
             {isLoadingContent ? (
-                <p style={{ color: 'var(--text-secondary-dark)' }}>Cargando contenido desde Supabase...</p>
+                <p style={{ color: 'var(--text-secondary-dark)' }}>Cargando contenido...</p>
             ) : (
             <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: '1.5rem', alignItems: 'start' }}>
                 <aside style={{
