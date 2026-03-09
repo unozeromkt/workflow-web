@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    aiContentDefaults,
-    bitrix24ContentDefaults,
-    homeContentDefaults,
-    solutionsContentDefaults,
-    weAreContentDefaults
-} from '../content/homeContentDefaults';
-import {
     fetchAIContent,
     fetchBitrix24Content,
     fetchHomeContent,
@@ -17,11 +10,6 @@ import {
     getHomeContent,
     getSolutionsContent,
     getWeAreContent,
-    resetAIContent,
-    resetBitrix24Content,
-    resetHomeContent,
-    resetSolutionsContent,
-    resetWeAreContent,
     saveAIContent,
     saveBitrix24Content,
     saveHomeContent,
@@ -303,21 +291,6 @@ const AdminHome = () => {
         alert('Cambios guardados correctamente.');
     };
 
-    const handleResetHome = async () => {
-        setIsSaving(true);
-        const result = await resetHomeContent();
-        setIsSaving(false);
-
-        if (!result.ok) {
-            setError(result.error || 'No se pudo restaurar Home.');
-            return;
-        }
-
-        setHomeContent(result.data);
-        setError('');
-        alert('Contenido restaurado correctamente.');
-    };
-
     const handleSaveWeAre = async () => {
         setIsSaving(true);
         const result = await saveWeAreContent(weAreContent);
@@ -330,21 +303,6 @@ const AdminHome = () => {
 
         setError('');
         alert('Cambios guardados correctamente.');
-    };
-
-    const handleResetWeAre = async () => {
-        setIsSaving(true);
-        const result = await resetWeAreContent();
-        setIsSaving(false);
-
-        if (!result.ok) {
-            setError(result.error || 'No se pudo restaurar We are.');
-            return;
-        }
-
-        setWeAreContent(result.data);
-        setError('');
-        alert('Contenido restaurado correctamente.');
     };
 
     const handleSaveSolutions = async () => {
@@ -361,21 +319,6 @@ const AdminHome = () => {
         alert('Cambios guardados correctamente.');
     };
 
-    const handleResetSolutions = async () => {
-        setIsSaving(true);
-        const result = await resetSolutionsContent();
-        setIsSaving(false);
-
-        if (!result.ok) {
-            setError(result.error || 'No se pudo restaurar Soluciones.');
-            return;
-        }
-
-        setSolutionsContent(result.data);
-        setError('');
-        alert('Contenido restaurado correctamente.');
-    };
-
     const handleSaveAI = async () => {
         setIsSaving(true);
         const result = await saveAIContent(aiContent);
@@ -390,21 +333,6 @@ const AdminHome = () => {
         alert('Cambios guardados correctamente.');
     };
 
-    const handleResetAI = async () => {
-        setIsSaving(true);
-        const result = await resetAIContent();
-        setIsSaving(false);
-
-        if (!result.ok) {
-            setError(result.error || 'No se pudo restaurar IA.');
-            return;
-        }
-
-        setAIContent(result.data);
-        setError('');
-        alert('Contenido restaurado correctamente.');
-    };
-
     const handleSaveBitrix24 = async () => {
         setIsSaving(true);
         const result = await saveBitrix24Content(bitrixContent);
@@ -417,21 +345,6 @@ const AdminHome = () => {
 
         setError('');
         alert('Cambios guardados correctamente.');
-    };
-
-    const handleResetBitrix24 = async () => {
-        setIsSaving(true);
-        const result = await resetBitrix24Content();
-        setIsSaving(false);
-
-        if (!result.ok) {
-            setError(result.error || 'No se pudo restaurar Bitrix24.');
-            return;
-        }
-
-        setBitrixContent(result.data);
-        setError('');
-        alert('Contenido restaurado correctamente.');
     };
 
     const handleLogout = async () => {
@@ -667,21 +580,6 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <button onClick={handleSaveHome} className="btn btn-primary" disabled={isSaving}>
-                    {isSaving ? 'Guardando...' : 'Guardar Home'}
-                </button>
-                <button
-                    onClick={() => {
-                        setHomeContent(homeContentDefaults);
-                    }}
-                    className="btn btn-secondary"
-                    disabled={isSaving}
-                >
-                    Restaurar formulario
-                </button>
-                <button onClick={handleResetHome} className="btn btn-secondary" disabled={isSaving}>Restaurar guardado</button>
-            </div>
         </div>
     );
 
@@ -745,38 +643,15 @@ const AdminHome = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <button onClick={handleSaveWeAre} className="btn btn-primary" disabled={isSaving}>
-                    {isSaving ? 'Guardando...' : 'Guardar We are'}
-                </button>
-                <button
-                    onClick={() => {
-                        setWeAreContent(weAreContentDefaults);
-                    }}
-                    className="btn btn-secondary"
-                    disabled={isSaving}
-                >
-                    Restaurar formulario
-                </button>
-                <button onClick={handleResetWeAre} className="btn btn-secondary" disabled={isSaving}>Restaurar guardado</button>
-            </div>
         </div>
     );
 
-    const renderSectionEditor = (title, description, content, onChangeField, onReset, onResetForm) => (
+    const renderSectionEditor = (title, description, content, onChangeField) => (
         <div style={{ display: 'grid', gap: '1rem' }}>
             <div style={{ background: 'rgba(243, 246, 248, 0.7)', border: '1px solid rgba(2, 100, 160, 0.2)', borderRadius: '14px', padding: '1rem' }}>
                 <h2 style={{ marginBottom: '0.5rem' }}>{title}</h2>
                 <p style={{ marginBottom: '0.75rem', color: 'var(--text-secondary-dark)' }}>{description}</p>
                 {renderDynamicFields(content, '', onChangeField)}
-            </div>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <button onClick={onResetForm} className="btn btn-secondary" disabled={isSaving}>
-                    Restaurar formulario
-                </button>
-                <button onClick={onReset} className="btn btn-secondary" disabled={isSaving}>
-                    Restaurar guardado
-                </button>
             </div>
         </div>
     );
@@ -919,25 +794,19 @@ const AdminHome = () => {
                         'Soluciones',
                         'Edición por campos para la página Soluciones.',
                         solutionsContent,
-                        (path, value) => updateNestedField(setSolutionsContent, path, value),
-                        handleResetSolutions,
-                        () => setSolutionsContent(structuredClone(solutionsContentDefaults))
+                        (path, value) => updateNestedField(setSolutionsContent, path, value)
                     )}
                     {activeTab === 'ai' && renderSectionEditor(
                         'Inteligencia Artificial',
                         'Edición por campos para la página IA.',
                         aiContent,
-                        (path, value) => updateNestedField(setAIContent, path, value),
-                        handleResetAI,
-                        () => setAIContent(structuredClone(aiContentDefaults))
+                        (path, value) => updateNestedField(setAIContent, path, value)
                     )}
                     {activeTab === 'bitrix24' && renderSectionEditor(
                         'Bitrix24',
                         'Edición por campos para la página Bitrix24.',
                         bitrixContent,
-                        (path, value) => updateNestedField(setBitrixContent, path, value),
-                        handleResetBitrix24,
-                        () => setBitrixContent(structuredClone(bitrix24ContentDefaults))
+                        (path, value) => updateNestedField(setBitrixContent, path, value)
                     )}
                 </div>
             </div>
