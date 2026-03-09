@@ -17,48 +17,23 @@ import isoCloud from '../assets/iso-cloud.png';
 import isometricCta from '../assets/isometric-cta.png';
 import bitrix1 from '../assets/Bitrix-1.jpg';
 import bitrix2 from '../assets/Bitrix.jpg';
+import { fetchHomeContent, getHomeContent } from '../utils/contentStorage';
 
-const ServicesCarousel = () => {
+const serviceDefinitions = [
+    { icon: Sparkles, link: '/ia' },
+    { icon: Zap, link: '/soluciones' },
+    { icon: Users, link: '/soluciones' },
+    { icon: Shield, link: '/bitrix24' }
+];
+
+const ServicesCarousel = (editableServices) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-    const services = [
-        {
-            icon: Sparkles,
-            title: 'AI Strategy & Arquitectura de Decisiones',
-            paragraphs: [
-                'Implementamos modelos de IA que leen tus datos en tiempo real para anticipar el mercado y guiar decisiones estratégicas.',
-                'Convertimos la data en activos accionables con modelos predictivos y Machine Learning aplicados al negocio.'
-            ],
-            link: '/ia'
-        },
-        {
-            icon: Zap,
-            title: 'Ecosistemas Digitales Escalables (Software Development)',
-            paragraphs: [
-                'Diseñamos software nativo en la nube que actúa como el sistema nervioso de tu operación.',
-                'Construimos en AWS, Azure o Google Cloud con ciberseguridad desde el diseño para apps móviles o ERPs complejos.'
-            ],
-            link: '/soluciones'
-        },
-        {
-            icon: Users,
-            title: 'Intelligent Business Process Outsourcing (iBPO)',
-            paragraphs: [
-                'Delegamos operaciones a células híbridas potenciadas por automatización y agentes inteligentes.',
-                'Operamos contact centers y equipos comerciales para elevar servicio, prospección y ventas automatizadas.'
-            ],
-            link: '/soluciones'
-        },
-        {
-            icon: Shield,
-            title: 'Consultoría 360° - Bitrix24 Gold Partner',
-            paragraphs: [
-                'Como Gold Partner Bitrix24 integramos CRM, workflows y comunicaciones en una oficina virtual que elimina cuellos de botella.'
-            ],
-            link: '/bitrix24'
-        }
-    ];
+    const services = serviceDefinitions.map((serviceDefinition, index) => ({
+        ...serviceDefinition,
+        ...(editableServices[index] || {})
+    }));
 
     useEffect(() => {
         const handleResize = () => {
@@ -91,6 +66,26 @@ const ServicesCarousel = () => {
 };
 
 const Home = () => {
+    const [homeContent, setHomeContent] = useState(() => getHomeContent());
+
+    useEffect(() => {
+        const syncContent = async () => {
+            const { data } = await fetchHomeContent();
+            if (data) {
+                setHomeContent(data);
+            }
+        };
+
+        syncContent();
+        window.addEventListener('storage', syncContent);
+        window.addEventListener('site-content-updated', syncContent);
+
+        return () => {
+            window.removeEventListener('storage', syncContent);
+            window.removeEventListener('site-content-updated', syncContent);
+        };
+    }, []);
+
     return (
         <>
             <style>{`
@@ -212,12 +207,12 @@ const Home = () => {
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.5px'
                                 }}>
-                                    Bitrix24 Gold Partner
+                                    {homeContent.hero.badge}
                                 </div>
                             </div>
 
                             <h1 className="hero-title" style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
-                                Ingeniería de Alto Impacto para la Era de la Inteligencia Artificial
+                                {homeContent.hero.title}
                             </h1>
 
                             <p
@@ -231,16 +226,16 @@ const Home = () => {
                                     maxWidth: '640px'
                                 }}
                             >
-                                Diseñamos la Inteligencia que acelera tu negocio.
+                                {homeContent.hero.tagline}
                             </p>
 
                             <p className="hero-description" style={{ fontSize: '1.125rem', maxWidth: '640px', marginBottom: '3rem', color: 'var(--text-secondary-dark)', lineHeight: '1.7' }}>
-                                Fusionamos la excelencia en ingeniería con visión estratégica para convertir la complejidad operativa en ventaja competitiva.
+                                {homeContent.hero.description}
                             </p>
 
                             <div className="hero-buttons" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                                 <Link to="/contacto" className="btn btn-primary">
-                                    Iniciar Implementación <ArrowRight size={20} />
+                                    {homeContent.hero.ctaLabel} <ArrowRight size={20} />
                                 </Link>
                             </div>
                         </div>
@@ -424,7 +419,7 @@ const Home = () => {
                             fontSize: '0.875rem',
                             letterSpacing: '0.05em'
                         }}>
-                            SOBRE NOSOTROS
+                            {homeContent.about.badge}
                         </span>
                     </div>
 
@@ -473,7 +468,7 @@ const Home = () => {
                                 marginBottom: '2rem',
                                 lineHeight: '1.1'
                             }}>
-                                SOMOS WORKFLOW
+                                {homeContent.about.title}
                             </h2>
                             
                             <p style={{
@@ -482,7 +477,7 @@ const Home = () => {
                                 color: 'var(--text-secondary-dark)',
                                 marginBottom: '2rem'
                             }}>
-                                Somos una empresa dedicada a impulsar el crecimiento y la productividad de las organizaciones.
+                                {homeContent.about.paragraph1}
                             </p>
 
                             <p style={{
@@ -491,7 +486,7 @@ const Home = () => {
                                 color: 'var(--text-secondary-dark)',
                                 marginBottom: '3rem'
                             }}>
-                                Agregamos valor a tus procesos y transformamos tus modelos de negocio para potenciar el desarrollo profesional de los equipos. Nuestro enfoque va más allá de la tecnología: Diseñamos soluciones a la medida, ayudando a que tu equipo crezca y se adapte al futuro.
+                                {homeContent.about.paragraph2}
                             </p>
 
                             {/* Benefits List */}
@@ -500,13 +495,7 @@ const Home = () => {
                                 flexDirection: 'column',
                                 gap: '1.25rem'
                             }}>
-                                {[
-                                    'Soporte integral y especializado 24/7',
-                                    'Expertos transformación digital',
-                                    'Consultoría Interdisciplinaria',
-                                    'Optimización de productividad',
-                                    'Compromiso con el crecimiento'
-                                ].map((benefit, i) => (
+                                {homeContent.about.benefits.map((benefit, i) => (
                                     <div className="about-benefit-item" key={i} style={{
                                         display: 'flex',
                                         gap: '1rem',
@@ -611,7 +600,7 @@ const Home = () => {
                             marginBottom: '1rem',
                             fontWeight: 600
                         }}>
-                            Propuesta de Valor
+                            {homeContent.valueProposal.badge}
                         </p>
                         
                         <h2 style={{
@@ -623,7 +612,7 @@ const Home = () => {
                             backgroundClip: 'text',
                             marginBottom: '1.5rem'
                         }}>
-                            Más ventas, más eficiencia, más resultados.
+                            {homeContent.valueProposal.title}
                         </h2>
                         <p style={{
                             fontSize: 'clamp(0.95rem, 2vw, 1.125rem)',
@@ -632,7 +621,7 @@ const Home = () => {
                             maxWidth: '700px',
                             margin: '0 auto 3rem auto'
                         }}>
-                            Transformamos flujos de trabajo tradicionales en ecosistemas inteligentes donde la IA, Soluciones Cloud y el Talento Humano convergen para escalar tu rentabilidad.
+                            {homeContent.valueProposal.description}
                         </p>
                         <h3 style={{
                             fontSize: 'clamp(1.25rem, 3vw, 1.5rem)',
@@ -640,7 +629,7 @@ const Home = () => {
                             color: 'var(--text-primary-dark)',
                             marginBottom: '3rem'
                         }}>
-                            El Factor Diferencial
+                            {homeContent.valueProposal.differentialTitle}
                         </h3>
                     </div>
 
@@ -657,25 +646,21 @@ const Home = () => {
                                 {
                                     icon: Zap,
                                     iconBg: 'rgba(14, 165, 233, 0.15)',
-                                    iconColor: '#38BDF8',
-                                    title: 'Metodología Ágil Garantizada',
-                                    desc: 'Entregas incrementales de valor bajo marcos Scrum y Kanban para asegurar transparencia total.'
+                                    iconColor: '#38BDF8'
                                 },
                                 {
                                     icon: Server,
                                     iconBg: 'rgba(168, 85, 247, 0.15)',
-                                    iconColor: '#C084FC',
-                                    title: 'Infraestructura Elástica',
-                                    desc: 'Diseñamos sistemas que optimizan costos y permiten un crecimiento ilimitado sin fricciones.'
+                                    iconColor: '#C084FC'
                                 },
                                 {
                                     icon: Award,
                                     iconBg: 'rgba(34, 197, 94, 0.15)',
-                                    iconColor: '#4ADE80',
-                                    title: 'Experiencia Multisectorial',
-                                    desc: 'Respaldados por más de 10 años transformando sectores como Educación, Salud, Banca, Manufactura y muchos más.'
+                                    iconColor: '#4ADE80'
                                 }
-                            ].map((benefit, i) => (
+                            ].map((benefit, i) => {
+                                const editableCard = homeContent.valueProposal.cards[i];
+                                return (
                                 <ScrollRevealItem key={i} delay={i * 0.15}>
                                     <div className="glass" style={{
                                         padding: '2rem',
@@ -717,7 +702,7 @@ const Home = () => {
                                                 marginBottom: '0.5rem',
                                                 lineHeight: '1.3'
                                             }}>
-                                                {benefit.title}
+                                                {editableCard.title}
                                             </h3>
                                             <p style={{
                                                 fontSize: 'clamp(0.85rem, 1.5vw, 0.95rem)',
@@ -725,12 +710,13 @@ const Home = () => {
                                                 color: 'var(--text-secondary-dark)',
                                                 margin: 0
                                             }}>
-                                                {benefit.desc}
+                                                {editableCard.desc}
                                             </p>
                                         </div>
                                     </div>
                                 </ScrollRevealItem>
-                            ))}
+                                );
+                            })}
                         </div>
 
                         {/* Right: Image */}
@@ -758,7 +744,7 @@ const Home = () => {
             </section>
 
             {/* Services Section - Full Width */}
-            <ServicesSection />
+            <ServicesSection content={homeContent} />
 
             {/* CTA Section */}
             <section style={{
@@ -1122,8 +1108,8 @@ const TestimonialCarousel = () => {
 };
 
 // Services Section Component
-const ServicesSection = () => {
-    const { isMobile, services, currentIndex, setCurrentIndex, currentService, handleNext, handlePrev } = ServicesCarousel();
+const ServicesSection = ({ content }) => {
+    const { isMobile, services, currentIndex, setCurrentIndex, currentService, handleNext, handlePrev } = ServicesCarousel(content.services);
 
     if (isMobile) {
         // Mobile Carousel View
@@ -1209,7 +1195,7 @@ const ServicesSection = () => {
                         marginBottom: '1.25rem',
                         lineHeight: '1.2'
                     }}>
-                        Nuestras Disciplinas
+                        {content.servicesSection.title}
                     </h2>
                     <p style={{
                         fontSize: 'clamp(0.9rem, 2.5vw, 1.125rem)',
@@ -1217,7 +1203,7 @@ const ServicesSection = () => {
                         color: 'var(--text-secondary-dark)',
                         marginBottom: '2rem'
                     }}>
-                        AI Strategy & Arquitectura de Decisiones · Ecosistemas Digitales Escalables (Software Development) · Intelligent Business Process Outsourcing (iBPO) · Consultoría 360° - Bitrix24 Gold Partner.
+                        {content.servicesSection.summary}
                     </p>
                     <Link
                         to="/contacto"
@@ -1243,7 +1229,7 @@ const ServicesSection = () => {
                             e.currentTarget.style.gap = '0.75rem';
                         }}
                     >
-                        Explorar Soluciones <ArrowRight size={18} />
+                        {content.servicesSection.ctaLabel} <ArrowRight size={18} />
                     </Link>
                 </div>
 
@@ -1334,7 +1320,7 @@ const ServicesSection = () => {
                                         e.currentTarget.style.gap = '0.5rem';
                                     }}
                                 >
-                                    Explorar más <ArrowRight size={16} />
+                                    {content.servicesSection.cardCtaLabel} <ArrowRight size={16} />
                                 </Link>
                             </div>
                         </div>
@@ -1409,7 +1395,7 @@ const ServicesSection = () => {
                     marginBottom: '2rem',
                     lineHeight: '1.2'
                 }}>
-                    Nuestras Disciplinas
+                    {content.servicesSection.title}
                 </h2>
                 <p style={{
                     fontSize: 'clamp(1rem, 2.5vw, 1.125rem)',
@@ -1417,7 +1403,7 @@ const ServicesSection = () => {
                     color: 'var(--text-secondary-dark)',
                     marginBottom: '3rem'
                 }}>
-                    AI Strategy & Arquitectura de Decisiones · Ecosistemas Digitales Escalables (Software Development) · Intelligent Business Process Outsourcing (iBPO) · Consultoría 360° - Bitrix24 Gold Partner.
+                    {content.servicesSection.summary}
                 </p>
                 <Link
                     to="/contacto"
@@ -1443,7 +1429,7 @@ const ServicesSection = () => {
                         e.currentTarget.style.gap = '0.75rem';
                     }}
                 >
-                    Explorar Soluciones <ArrowRight size={20} />
+                    {content.servicesSection.ctaLabel} <ArrowRight size={20} />
                 </Link>
             </div>
 
@@ -1557,7 +1543,7 @@ const ServicesSection = () => {
                                         e.currentTarget.style.gap = '0.5rem';
                                     }}
                                 >
-                                    Explorar más <ArrowRight size={16} />
+                                    {content.servicesSection.cardCtaLabel} <ArrowRight size={16} />
                                 </Link>
                             </div>
                         </div>

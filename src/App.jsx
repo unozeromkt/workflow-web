@@ -7,6 +7,7 @@ import Solutions from './pages/Solutions';
 import AI from './pages/AI';
 import Bitrix24 from './pages/Bitrix24';
 import Contact from './pages/Contact';
+import AdminHome from './pages/AdminHome';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/ia" element={<AI />} />
           <Route path="/bitrix24" element={<Bitrix24 />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/admin" element={<AdminHome />} />
         </Routes>
       </Layout>
     </Router>

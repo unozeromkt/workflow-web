@@ -1,59 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import cloudVisual from '../assets/cloud-visual.png';
 import ScrollRevealItem from '../components/ScrollRevealItem';
+import { fetchSolutionsContent, getSolutionsContent } from '../utils/contentStorage';
 
 const Solutions = () => {
-    const solutions = [
-        { 
-            title: "IA Strategy & Data Science", 
-            desc: "Transformamos datos en activos estratégicos.",
-            tag: 'IA + DataOps',
-            highlights: [
-                'Modelos Predictivos y Machine Learning para la toma de decisiones.',
-                'Arquitectura de Decisiones basada en análisis en tiempo real.',
-                'IA aplicada a modelos de negocio.'
-            ]
-        },
-        { 
-            title: "Ecosistemas Digitales & Software", 
-            desc: "Creamos el sistema nervioso digital de su empresa.",
-            tag: 'Cloud + DevX',
-            highlights: [
-                'Desarrollo Full-Stack y Móvil.',
-                'Modernización Cloud en AWS, Azure y Google Cloud.',
-                'Ciberseguridad Integral desde diseño.'
-            ]
-        },
-        { 
-            title: "Intelligent Process Outsourcing (iBPO)", 
-            desc: "Eficiencia operativa potenciada por automatización inteligente y personal altamente calificado.",
-            tag: 'BPO Augmentado',
-            highlights: [
-                'Contact Center Inteligente.',
-                'Dirección Comercial y Ventas.',
-                'Automatización de flujos críticos.',
-                'Dirección tecnológica especializada.'
-            ]
-        },
-        { 
-            title: "Ecosistema Bitrix24 & Consultoría 360°", 
-            desc: "Eliminamos el caos operativo con una única fuente de verdad.",
-            tag: 'Bitrix24 Elite',
-            highlights: [
-                'Implementamos oficinas virtuales, Project Management, Workflows y CRM avanzado.',
-                'Definimos hojas de ruta para migración digital.',
-                'Entrenamos equipos para asegurar adopción exitosa.'
-            ]
-        }
-    ];
+    const [solutionsContent, setSolutionsContent] = useState(() => getSolutionsContent());
 
-    const heroStats = [
-        { value: '+120M', label: 'Pipeline gestionado con IA' },
-        { value: '45% menos', label: 'Time-to-market promedio' },
-        { value: '5 regiones', label: 'Operaciones activas' }
-    ];
+    useEffect(() => {
+        const syncContent = async () => {
+            const { data } = await fetchSolutionsContent();
+            if (data) {
+                setSolutionsContent(data);
+            }
+        };
+
+        syncContent();
+        window.addEventListener('site-content-updated', syncContent);
+
+        return () => {
+            window.removeEventListener('site-content-updated', syncContent);
+        };
+    }, []);
+
+    const solutions = solutionsContent.architecture.cards;
+    const heroStats = solutionsContent.hero.stats;
 
     return (
         <>
@@ -90,7 +62,7 @@ const Solutions = () => {
                         fontSize: '0.85rem',
                         fontWeight: 600,
                         marginBottom: '1.25rem'
-                    }}>Enfoque</p>
+                    }}>{solutionsContent.hero.badge}</p>
                     <h1 style={{ 
                         fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', 
                         fontWeight: '900', 
@@ -98,12 +70,12 @@ const Solutions = () => {
                         lineHeight: '1.1',
                         color: 'var(--text-primary-dark)'
                     }}>
-                        Soluciones de Ingeniería <span style={{
+                        {solutionsContent.hero.titlePrefix} <span style={{
                             background: 'linear-gradient(135deg, #0264A0 0%, #55B3D9 100%)',
                             backgroundClip: 'text',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent'
-                        }}>diseñadas para escalar.</span>
+                        }}>{solutionsContent.hero.titleHighlight}</span>
                     </h1>
                     <p style={{ 
                         fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', 
@@ -111,10 +83,10 @@ const Solutions = () => {
                         marginBottom: '2rem',
                         lineHeight: 1.8
                     }}>
-                        No solo entregamos herramientas; construimos ecosistemas inteligentes que fusionan IA, Cloud y Metodología estratégica para garantizar resultados cuantificables.
+                        {solutionsContent.hero.description}
                     </p>
                     <div style={{ paddingLeft: '1rem', borderLeft: '4px solid #0264A0', background: 'rgba(2, 100, 160, 0.05)', padding: '1.5rem 1rem 1.5rem 1rem', borderRadius: '8px' }}>
-                        <p style={{ fontStyle: 'italic', color: 'var(--text-primary-dark)', margin: 0 }}>Para garantizar resultados cuantificables.</p>
+                        <p style={{ fontStyle: 'italic', color: 'var(--text-primary-dark)', margin: 0 }}>{solutionsContent.hero.quote}</p>
                     </div>
                     <div 
                         className="hero-chip-row"
@@ -127,7 +99,7 @@ const Solutions = () => {
                             paddingBottom: '0.25rem'
                         }}
                     >
-                        {['Arquitectura cloud-native', 'IA aplicada al negocio', 'Gobernanza & Compliance'].map((chip, idx) => (
+                        {solutionsContent.hero.chips.map((chip, idx) => (
                             <span key={idx} style={{
                                 padding: '0.35rem 1rem',
                                 borderRadius: '999px',
@@ -205,20 +177,20 @@ const Solutions = () => {
                         color: '#0264A0',
                         fontSize: '0.85rem',
                         fontWeight: 600
-                    }}>Arquitectura Integral</p>
+                    }}>{solutionsContent.architecture.badge}</p>
                     <h2 style={{
                         fontSize: 'clamp(2rem, 4vw, 2.8rem)',
                         fontWeight: 900,
                         marginBottom: '1rem',
                         color: 'var(--text-primary-dark)'
-                    }}>4 verticales conectadas para escalar tu operación</h2>
+                    }}>{solutionsContent.architecture.title}</h2>
                     <p style={{
                         fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
                         color: 'var(--text-secondary-dark)',
                         maxWidth: '760px',
                         margin: '0 auto'
                     }}>
-                        Cada vertical activa un módulo de nuestra plataforma estratégica. Conectadas, forman un sistema operativo empresarial listo para evolucionar.
+                        {solutionsContent.architecture.description}
                     </p>
                 </div>
                 <div className="solutions-row" style={{ 
@@ -321,7 +293,7 @@ const Solutions = () => {
                                 onMouseLeave={(e) => e.currentTarget.style.gap = '0.5rem'}
                                 className="group"
                             >
-                                Contáctanos Ahora <ArrowRight size={18} />
+                                {solutionsContent.architecture.cardCtaLabel} <ArrowRight size={18} />
                             </Link>
                         </div>
                         </ScrollRevealItem>
@@ -352,20 +324,20 @@ const Solutions = () => {
                             fontSize: '0.85rem',
                             fontWeight: 600,
                             marginBottom: '1rem'
-                        }}>Diferenciadores</p>
+                        }}>{solutionsContent.cta.badge}</p>
                         <h2 style={{
                             fontSize: 'clamp(2rem, 4vw, 3rem)',
                             fontWeight: 900,
                             marginBottom: '1.5rem',
                             lineHeight: 1.2
-                        }}>Orquestamos la operación mientras tu equipo acelera el negocio</h2>
+                        }}>{solutionsContent.cta.title}</h2>
                         <p style={{
                             fontSize: '1.1rem',
                             color: 'rgba(255,255,255,0.75)',
                             marginBottom: '2rem',
                             lineHeight: 1.8
                         }}>
-                            Equipos multidisciplinarios, estándares globales y métricas en vivo. Listos para conectar tu visión con tecnología accionable.
+                            {solutionsContent.cta.description}
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <Link to="/contacto" style={{
@@ -376,7 +348,7 @@ const Solutions = () => {
                                 fontWeight: 700,
                                 textDecoration: 'none'
                             }}>
-                                Contáctanos Ahora
+                                {solutionsContent.cta.primaryLabel}
                             </Link>
                             <Link to="/contacto" style={{
                                 background: 'transparent',
@@ -387,7 +359,7 @@ const Solutions = () => {
                                 border: '1px solid rgba(255,255,255,0.4)',
                                 textDecoration: 'none'
                             }}>
-                                Descargar dossier
+                                {solutionsContent.cta.secondaryLabel}
                             </Link>
                         </div>
                     </div>
@@ -398,7 +370,7 @@ const Solutions = () => {
                         padding: '2rem',
                         backdropFilter: 'blur(12px)'
                     }}>
-                        {[ 'Metodología Ágil Garantizada.', 'Infraestructura Elástica.', 'Seguridad por Diseño.' ].map((item, idx) => (
+                        {solutionsContent.cta.bullets.map((item, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
                                 alignItems: 'center',

@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layers, Box, Settings, ArrowRight } from 'lucide-react';
 import ScrollRevealItem from '../components/ScrollRevealItem';
 import bitrixGoldBadge from '../assets/Bitrix-1.jpg';
+import { fetchBitrix24Content, getBitrix24Content } from '../utils/contentStorage';
 
 const Bitrix24 = () => {
+    const [bitrixContent, setBitrixContent] = useState(() => getBitrix24Content());
+
+    useEffect(() => {
+        const syncContent = async () => {
+            const { data } = await fetchBitrix24Content();
+            if (data) {
+                setBitrixContent(data);
+            }
+        };
+
+        syncContent();
+        window.addEventListener('site-content-updated', syncContent);
+
+        return () => {
+            window.removeEventListener('site-content-updated', syncContent);
+        };
+    }, []);
+
     return (
         <>
             <section style={{ 
@@ -22,12 +41,12 @@ const Bitrix24 = () => {
                     lineHeight: '1.2',
                     color: 'var(--text-primary-dark)'
                 }}>
-                    Potenciamos su empresa con el máximo <br />nivel de <span style={{
+                    {bitrixContent.hero.titlePrefix} <br /> <span style={{
                         background: 'linear-gradient(135deg, #0264A0 0%, #55B3D9 100%)',
                         backgroundClip: 'text',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
-                    }}>especialización en Bitrix24</span>
+                    }}>{bitrixContent.hero.titleHighlight}</span>
                 </h1>
                 <p style={{ 
                     fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', 
@@ -35,7 +54,7 @@ const Bitrix24 = () => {
                     marginBottom: '2.5rem',
                     lineHeight: 1.8
                 }}>
-                    Como Gold Partner oficial, transformamos Bitrix24 en el centro neurálgico de su operación, integrando CRM, automatización y comunicación en una sola fuente de verdad.
+                    {bitrixContent.hero.description}
                 </p>
                 <a href="https://www.bitrix24.com/partners/?ID=11605791" target="_blank" rel="noreferrer" style={{
                     display: 'inline-flex',
@@ -61,7 +80,7 @@ const Bitrix24 = () => {
                     e.currentTarget.style.transform = 'translateY(0)';
                 }}
                 >
-                    Ver perfil oficial Bitrix24 <ArrowRight size={18} />
+                    {bitrixContent.hero.profileButtonLabel} <ArrowRight size={18} />
                 </a>
                 <div style={{ marginTop: '2rem' }}>
                     <img 
@@ -91,18 +110,18 @@ const Bitrix24 = () => {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
                     {[
                         {
-                            title: 'Gold Partner',
+                            title: bitrixContent.cards[0].title,
                             color: '#0264A0',
-                            items: ['Experiencia Certificada.', 'Implementaciones a Medida.', 'Soporte de Ingeniería especializado.']
+                            items: bitrixContent.cards[0].items
                         },
                         {
-                            title: 'Ecosistema Bitrix24 x WORKFLOW',
+                            title: bitrixContent.cards[1].title,
                             color: '#0264A0',
                             iconItems: [
-                                { text: 'CRM Avanzado y Omnicanalidad.', icon: Layers },
-                                { text: 'Oficina Virtual Integral.', icon: Box },
-                                { text: 'AIBot24.', icon: Settings },
-                                { text: 'Integraciones y API.', icon: ArrowRight }
+                                { text: bitrixContent.cards[1].iconItems[0], icon: Layers },
+                                { text: bitrixContent.cards[1].iconItems[1], icon: Box },
+                                { text: bitrixContent.cards[1].iconItems[2], icon: Settings },
+                                { text: bitrixContent.cards[1].iconItems[3], icon: ArrowRight }
                             ]
                                 }
                     ].map((card, idx) => (
@@ -184,20 +203,20 @@ const Bitrix24 = () => {
                             fontSize: '0.85rem',
                             fontWeight: 600,
                             marginBottom: '1rem'
-                        }}>Metodología</p>
+                        }}>{bitrixContent.methodology.badge}</p>
                         <h2 style={{
                             fontSize: 'clamp(2rem, 4vw, 3rem)',
                             fontWeight: 900,
                             marginBottom: '1.5rem',
                             lineHeight: 1.2,
                             color: 'var(--text-primary-dark)'
-                        }}>Implementación Bitrix24 con precisión quirúrgica</h2>
+                        }}>{bitrixContent.methodology.title}</h2>
                         <p style={{
                             color: 'var(--text-secondary-dark)',
                             lineHeight: 1.7,
                             fontSize: '1.05rem'
                         }}>
-                            Nuestros ingenieros orquestan la adopción completa de Bitrix24 desde la auditoría hasta la optimización continua, asegurando alineación con objetivos estratégicos y adopción total del equipo.
+                            {bitrixContent.methodology.description}
                         </p>
                     </div>
                     <div className="glass" style={{
@@ -207,8 +226,8 @@ const Bitrix24 = () => {
                         padding: '2.5rem'
                     }}>
                         <div style={{ display: 'grid', gap: '1.5rem' }}>
-                            {['Auditoría y Diagnóstico', 'Configuración y Arquitectura', 'Gestión del Cambio', 'Optimización Continua'].map((step, index) => (
-                                <div key={step} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                            {bitrixContent.methodology.steps.map((step, index) => (
+                                <div key={step.title} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
                                     <div style={{
                                         width: '40px',
                                         height: '40px',
@@ -227,17 +246,14 @@ const Bitrix24 = () => {
                                             fontWeight: 700,
                                             color: 'var(--text-primary-dark)' ,
                                             textAlign: 'left'
-                                        }}>{step}</p>
+                                        }}>{step.title}</p>
                                         <p style={{
                                             margin: '0.35rem 0 0 0',
                                             color: 'var(--text-secondary-dark)',
                                             lineHeight: 1.6,
                                             textAlign: 'left'
                                         }}>
-                                            {index === 0 && 'Analizamos procesos, datos y objetivos para definir el roadmap ideal.'}
-                                            {index === 1 && 'Configuramos módulos, automatizaciones y seguridad acorde a su arquitectura.'}
-                                            {index === 2 && 'Acompañamos al equipo con playbooks, entrenamiento y métricas de adopción.'}
-                                            {index === 3 && 'Monitoreamos resultados, ajustamos flujos y ampliamos capacidades.'}
+                                            {step.body}
                                         </p>
                                     </div>
                                 </div>
@@ -264,10 +280,10 @@ const Bitrix24 = () => {
                             fontSize: '0.85rem',
                             fontWeight: 600,
                             marginBottom: '1rem'
-                        }}>Bitrix24 Enterprise</p>
-                        <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', lineHeight: 1.3 }}>¿Listo para llevar Bitrix24 al siguiente nivel?</h3>
+                        }}>{bitrixContent.finalCta.badge}</p>
+                        <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', lineHeight: 1.3 }}>{bitrixContent.finalCta.title}</h3>
                         <p style={{ color: 'rgba(255,255,255,0.75)', marginBottom: '1.75rem', fontSize: '1.05rem', lineHeight: 1.8 }}>
-                            Organizamos una sesión técnica para auditar su instancia actual, definir quick wins y diseñar un roadmap de automatización y reportes ejecutivos.
+                            {bitrixContent.finalCta.description}
                         </p>
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <a href="/contacto" style={{
@@ -278,7 +294,7 @@ const Bitrix24 = () => {
                                 fontWeight: 700,
                                 textDecoration: 'none',
                                 boxShadow: '0 15px 35px rgba(85, 179, 217, 0.35)'
-                            }}>Agendar consultoría</a>
+                            }}>{bitrixContent.finalCta.buttonLabel}</a>
                         </div>
                     </div>
                     <div className="glass" style={{
@@ -288,7 +304,7 @@ const Bitrix24 = () => {
                         padding: '2rem',
                         backdropFilter: 'blur(12px)'
                     }}>
-                        {[ 'KPIs en vivo de adopción', 'Integraciones oficiales & personalizadas', 'Despliegue + soporte gestionado' ].map((item, idx) => (
+                        {bitrixContent.finalCta.bullets.map((item, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
                                 alignItems: 'center',

@@ -14,3 +14,18 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## Supabase CMS setup
+
+1. Create `.env` from `.env.example`.
+2. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`.
+3. Run SQL from `supabase/setup.sql` in Supabase SQL Editor.
+4. Create an Auth user and mark it admin:
+
+```sql
+update public.profiles
+set is_admin = true
+where email = 'tu-correo@dominio.com';
+```
+
+The admin panel (`/admin`) now authenticates against Supabase and stores `home` / `we_are` content in `public.site_content`.
