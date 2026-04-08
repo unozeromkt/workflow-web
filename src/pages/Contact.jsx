@@ -91,7 +91,7 @@ const Contact = () => {
                                 </div>
                                 <div>
                                     <div style={{ fontSize: 'clamp(0.85rem, 1.2vw, 0.9rem)', color: 'var(--text-secondary-dark)' }}>Correo Corporativo</div>
-                                    <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)' }}>consultoria@weareworkflow.com</div>
+                                    <div style={{ fontSize: 'clamp(1rem, 1.5vw, 1.1rem)', fontWeight: '600', color: 'var(--text-primary-dark)' }}>info@weareworkflow.com</div>
                                 </div>
                             </div>
 

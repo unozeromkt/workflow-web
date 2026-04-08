@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Bot, Check, LayoutGrid, Database, LineChart, Puzzle, Brain, PlugZap, RefreshCw, Cog, BadgeCheck } from 'lucide-react';
+import { Bot, Check, Puzzle, Brain, PlugZap, RefreshCw, Cog, BadgeCheck, Users, MessageSquare } from 'lucide-react';
 import aiVisual from '../assets/ai-visual.png';
 import aiBotPhoto from '../assets/AIBOT.jpg';
 import ScrollRevealItem from '../components/ScrollRevealItem';
@@ -30,6 +30,31 @@ const AI = () => {
         icon: methodologyIcons[index] || Puzzle,
         accent: methodologyAccents[index] || '#0264A0'
     }));
+
+    const possibilitiesIcons = [Users, MessageSquare, PlugZap, Cog];
+
+    const implementationItems = [
+        {
+            icon: Brain,
+            accent: '#0264A0',
+            ...aiContent.implementations.items[0]
+        },
+        {
+            icon: Bot,
+            accent: '#0388C8',
+            ...aiContent.implementations.items[1]
+        },
+        {
+            icon: Cog,
+            accent: '#0277B8',
+            ...aiContent.implementations.items[2]
+        },
+        {
+            icon: BadgeCheck,
+            accent: '#0A5F95',
+            ...aiContent.implementations.items[3]
+        }
+    ];
 
     return (
         <>
@@ -197,7 +222,7 @@ const AI = () => {
 
             <section style={{ 
                 padding: '6rem 0',
-                background: '#f9fcff',
+                background: 'linear-gradient(180deg, #f8fbff 0%, #eef6fc 100%)',
                 width: '100vw',
                 marginLeft: 'calc(-50vw + 50%)',
                 marginRight: 'calc(-50vw + 50%)'
@@ -205,61 +230,87 @@ const AI = () => {
                 <div className="container">
                 <h2 style={{ 
                     fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', 
-                    marginBottom: '4rem', 
+                    marginBottom: '1rem', 
                     textAlign: 'center',
                     color: 'var(--text-primary-dark)',
                     fontWeight: '900'
                 }}>{aiContent.implementations.title}</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                    {[
-                        { 
-                            icon: Database, 
-                            ...aiContent.implementations.items[0]
-                        },
-                        { 
-                            icon: Bot, 
-                            ...aiContent.implementations.items[1]
-                        },
-                        { 
-                            icon: LayoutGrid, 
-                            ...aiContent.implementations.items[2]
-                        },
-                        { 
-                            icon: LineChart, 
-                            ...aiContent.implementations.items[3]
-                        }
-                    ].map((item, i) => (
+                <p style={{
+                    textAlign: 'center',
+                    color: 'rgba(11, 27, 58, 0.72)',
+                    maxWidth: '760px',
+                    margin: '0 auto 2.5rem auto',
+                    lineHeight: 1.7,
+                    fontSize: 'clamp(0.95rem, 1.8vw, 1.05rem)'
+                }}>
+                    Casos de uso listos para activar eficiencia, precisión y velocidad operativa en diferentes frentes de negocio.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.6rem' }}>
+                    {implementationItems.map((item, i) => (
                         <ScrollRevealItem key={i} delay={i * 0.1}>
                         <div className="glass" style={{ 
-                            padding: '2.5rem 2rem', 
+                            position: 'relative',
+                            overflow: 'hidden',
+                            padding: '2.25rem 1.75rem', 
                             display: 'flex', 
                             flexDirection: 'column', 
                             alignItems: 'center', 
                             textAlign: 'center', 
                             transition: 'all 0.3s ease',
-                            background: 'rgba(255, 255, 255, 0.7)',
+                            background: 'linear-gradient(165deg, rgba(255,255,255,0.98), rgba(242,248,253,0.95))',
+                            border: '1px solid rgba(2, 100, 160, 0.14)',
+                            boxShadow: '0 22px 42px rgba(15, 23, 42, 0.1)',
                             height: '100%'
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-8px)';
-                            e.currentTarget.style.boxShadow = '0 20px 40px rgba(2, 100, 160, 0.2)';
+                            e.currentTarget.style.transform = 'translateY(-10px)';
+                            e.currentTarget.style.boxShadow = '0 28px 54px rgba(2, 100, 160, 0.24)';
+                            e.currentTarget.style.borderColor = 'rgba(2, 100, 160, 0.3)';
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = 'none';
+                            e.currentTarget.style.boxShadow = '0 22px 42px rgba(15, 23, 42, 0.1)';
+                            e.currentTarget.style.borderColor = 'rgba(2, 100, 160, 0.14)';
                         }}
                         >
-                            <div style={{ padding: '1.5rem', background: 'rgba(2, 100, 160, 0.15)', borderRadius: '50%', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <item.icon size={32} style={{ color: '#0264A0' }} />
+                            <div style={{
+                                position: 'absolute',
+                                top: '-70px',
+                                right: '-50px',
+                                width: '180px',
+                                height: '180px',
+                                borderRadius: '50%',
+                                background: 'radial-gradient(circle, rgba(85, 179, 217, 0.25), rgba(85, 179, 217, 0))',
+                                pointerEvents: 'none'
+                            }} />
+
+                            <div style={{
+                                width: '86px',
+                                height: '86px',
+                                borderRadius: '22px',
+                                marginBottom: '1.4rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: `linear-gradient(135deg, ${item.accent}2B, rgba(255,255,255,0.9))`,
+                                border: `1px solid ${item.accent}55`,
+                                boxShadow: `0 12px 26px ${item.accent}33`,
+                                position: 'relative',
+                                zIndex: 1
+                            }}>
+                                <item.icon size={38} strokeWidth={1.9} style={{ color: item.accent }} />
                             </div>
                             <h3 style={{ 
                                 fontSize: 'clamp(1.1rem, 2vw, 1.35rem)', 
                                 marginBottom: item.desc ? '1rem' : 0,
                                 color: 'var(--text-primary-dark)',
-                                fontWeight: '700'
+                                fontWeight: '800',
+                                lineHeight: 1.35,
+                                position: 'relative',
+                                zIndex: 1
                             }}>{item.title}</h3>
                             {item.desc && (
-                                <p style={{ color: 'var(--text-secondary-dark)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', lineHeight: 1.7 }}>{item.desc}</p>
+                                <p style={{ color: 'var(--text-secondary-dark)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', lineHeight: 1.7, position: 'relative', zIndex: 1 }}>{item.desc}</p>
                             )}
                         </div>
                         </ScrollRevealItem>
@@ -287,17 +338,51 @@ const AI = () => {
                         </p>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1.5rem' }}>
-                        {aiContent.possibilities.cards.map((item) => (
-                            <div key={item.title} style={{
-                                background: 'rgba(2, 100, 160, 0.05)',
-                                border: '1px solid rgba(2, 100, 160, 0.15)',
-                                borderRadius: '18px',
-                                padding: '1.75rem'
-                            }}>
-                                <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem', fontWeight: 700, color: '#0b1b3a' }}>{item.title}</h3>
-                                <p style={{ margin: 0, color: 'rgba(11,27,58,0.7)', lineHeight: 1.6 }}>{item.body}</p>
-                            </div>
-                        ))}
+                        {aiContent.possibilities.cards.map((item, index) => {
+                            const IconComponent = possibilitiesIcons[index] || Brain;
+                            return (
+                            <ScrollRevealItem key={item.title} delay={index * 0.12}>
+                                <div style={{
+                                    background: 'rgba(2, 100, 160, 0.05)',
+                                    border: '1px solid rgba(2, 100, 160, 0.15)',
+                                    borderRadius: '18px',
+                                    padding: '1.75rem',
+                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                    display: 'flex',
+                                    gap: '0.95rem',
+                                    alignItems: 'flex-start'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-4px)';
+                                    e.currentTarget.style.boxShadow = '0 14px 28px rgba(2, 100, 160, 0.18)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.boxShadow = 'none';
+                                }}
+                                >
+                                    <div style={{
+                                        width: '42px',
+                                        height: '42px',
+                                        borderRadius: '12px',
+                                        background: 'rgba(2, 100, 160, 0.14)',
+                                        border: '1px solid rgba(2, 100, 160, 0.22)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        flexShrink: 0,
+                                        color: '#0264A0'
+                                    }}>
+                                        <IconComponent size={20} strokeWidth={2.1} />
+                                    </div>
+                                    <div>
+                                        <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.1rem', fontWeight: 700, color: '#0b1b3a' }}>{item.title}</h3>
+                                        <p style={{ margin: 0, color: 'rgba(11,27,58,0.7)', lineHeight: 1.6 }}>{item.body}</p>
+                                    </div>
+                                </div>
+                            </ScrollRevealItem>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

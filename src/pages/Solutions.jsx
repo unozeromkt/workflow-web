@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, BrainCircuit, Cloud, Bot, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import cloudVisual from '../assets/cloud-visual.png';
 import ScrollRevealItem from '../components/ScrollRevealItem';
+import ParticlesBackground from '../components/ParticlesBackground';
 import { fetchSolutionsContent, getSolutionsContent } from '../utils/contentStorage';
 
 const Solutions = () => {
@@ -25,16 +26,39 @@ const Solutions = () => {
     }, []);
 
     const solutions = solutionsContent.architecture.cards;
-    const heroStats = solutionsContent.hero.stats;
+    const architectureIcons = [BrainCircuit, Cloud, Bot, LayoutDashboard];
 
     return (
         <>
             <style>{`
+                @keyframes solutionsFloating {
+                    0%, 100% {
+                        transform: translateY(0px);
+                    }
+                    50% {
+                        transform: translateY(-20px);
+                    }
+                }
+
+                .solutions-hero-image {
+                    animation: solutionsFloating 3s ease-in-out infinite;
+                }
+
                 .hero-chip-row {
                     flex-wrap: nowrap;
                 }
 
                 @media (max-width: 768px) {
+                    .solutions-hero-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+
+                    .solutions-hero-image-wrapper {
+                        max-width: 320px !important;
+                        margin: 0 auto !important;
+                    }
+
                     .hero-chip-row {
                         flex-wrap: wrap;
                     }
@@ -51,9 +75,13 @@ const Solutions = () => {
                 <div style={{
                     position: 'absolute',
                     inset: 0,
-                    background: 'radial-gradient(circle at top right, rgba(2, 100, 160, 0.12), transparent 45%)'
+                    background: 'linear-gradient(135deg, rgba(243, 246, 248, 0.95), rgba(255, 255, 255, 0.95))',
+                    zIndex: 0
                 }}></div>
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+
+                <ParticlesBackground />
+
+                <div className="container solutions-hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center', position: 'relative', zIndex: 1 }}>
                 <div>
                     <p style={{
                         textTransform: 'uppercase',
@@ -111,38 +139,31 @@ const Solutions = () => {
                         ))}
                     </div>
                 </div>
-                <div className="glass" style={{ padding: '1rem', position: 'relative', background: 'rgba(255, 255, 255, 0.7)' }}>
-                    <img src={cloudVisual} alt="Cloud Architecture" style={{ width: '100%', borderRadius: '12px', display: 'block' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(2, 100, 160, 0.1) 0%, transparent 100%)', pointerEvents: 'none', borderRadius: '12px' }}></div>
-                </div>
-                </div>
-                <div className="container" style={{
-                    marginTop: '3rem',
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                    gap: '1.5rem',
-                    position: 'relative',
-                    zIndex: 1
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    position: 'relative'
                 }}>
-                    {heroStats.map((stat, idx) => (
-                        <div key={idx} style={{
-                            padding: '1.75rem',
-                            borderRadius: '16px',
-                            background: '#fff',
-                            boxShadow: '0 15px 35px rgba(2, 100, 160, 0.12)'
-                        }}>
-                            <div style={{
-                                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                                fontWeight: 800,
-                                color: '#0264A0'
-                            }}>{stat.value}</div>
-                            <p style={{
-                                margin: '0.5rem 0 0 0',
-                                color: 'var(--text-secondary-dark)',
-                                fontSize: '0.95rem'
-                            }}>{stat.label}</p>
-                        </div>
-                    ))}
+                    <div className="solutions-hero-image solutions-hero-image-wrapper" style={{
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: '540px',
+                        aspectRatio: '1/1'
+                    }}>
+                        <img
+                            src={cloudVisual}
+                            alt="Cloud Architecture"
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'contain',
+                                display: 'block',
+                                filter: 'drop-shadow(0 20px 40px rgba(2, 100, 160, 0.15))'
+                            }}
+                        />
+                    </div>
+                </div>
                 </div>
             </section>
 
@@ -200,6 +221,9 @@ const Solutions = () => {
                 }}>
                     {solutions.map((sol, i) => (
                         <ScrollRevealItem key={i} delay={i * 0.1}>
+                        {(() => {
+                            const ArchitectureIcon = architectureIcons[i] || BrainCircuit;
+                            return (
                         <div style={{ 
                             padding: '2.5rem', 
                             position: 'relative', 
@@ -222,7 +246,9 @@ const Solutions = () => {
                             e.currentTarget.style.boxShadow = '0 35px 60px rgba(15, 23, 42, 0.08)';
                         }}
                         >
-                            <div style={{ position: 'absolute', top: 0, right: 0, padding: '1rem', opacity: 0.06, fontSize: '4rem', fontWeight: '900', color: '#0264A0' }}>{i + 1}</div>
+                            <div style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', padding: '0.75rem', opacity: 0.18, color: '#0264A0' }}>
+                                <ArchitectureIcon size={56} strokeWidth={1.8} />
+                            </div>
                             <span style={{
                                 alignSelf: 'flex-start',
                                 padding: '0.35rem 0.9rem',
@@ -296,6 +322,8 @@ const Solutions = () => {
                                 {solutionsContent.architecture.cardCtaLabel} <ArrowRight size={18} />
                             </Link>
                         </div>
+                            );
+                        })()}
                         </ScrollRevealItem>
                     ))}
                 </div>
@@ -339,7 +367,7 @@ const Solutions = () => {
                         }}>
                             {solutionsContent.cta.description}
                         </p>
-                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                             <Link to="/contacto" style={{
                                 background: '#55B3D9',
                                 color: '#010D26',
@@ -349,17 +377,6 @@ const Solutions = () => {
                                 textDecoration: 'none'
                             }}>
                                 {solutionsContent.cta.primaryLabel}
-                            </Link>
-                            <Link to="/contacto" style={{
-                                background: 'transparent',
-                                color: '#fff',
-                                padding: '0.9rem 2rem',
-                                borderRadius: '50px',
-                                fontWeight: 600,
-                                border: '1px solid rgba(255,255,255,0.4)',
-                                textDecoration: 'none'
-                            }}>
-                                {solutionsContent.cta.secondaryLabel}
                             </Link>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import AI from './pages/AI';
 import Bitrix24 from './pages/Bitrix24';
 import Contact from './pages/Contact';
 import AdminHome from './pages/AdminHome';
+import UpdatePassword from './pages/UpdatePassword';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/bitrix24" element={<Bitrix24 />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/admin" element={<AdminHome />} />
+          <Route path="/update-password" element={<UpdatePassword />} />
         </Routes>
       </Layout>
     </Router>

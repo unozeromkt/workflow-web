@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Layers, Box, Settings, ArrowRight } from 'lucide-react';
 import ScrollRevealItem from '../components/ScrollRevealItem';
+import ParticlesBackground from '../components/ParticlesBackground';
 import bitrixGoldBadge from '../assets/Bitrix-1.jpg';
+import workflowLogo from '../assets/workflow-logo.png';
+import bitrixHeroVideo from '../assets/video/workflow_video.webm';
 import { fetchBitrix24Content, getBitrix24Content } from '../utils/contentStorage';
 
 const Bitrix24 = () => {
@@ -25,21 +28,156 @@ const Bitrix24 = () => {
 
     return (
         <>
+            <style>{`
+                .bitrix-hero-particles canvas {
+                    z-index: 2 !important;
+                }
+
+                @keyframes bitrixCardIntro {
+                    from {
+                        opacity: 0;
+                        transform: translateY(18px) scale(0.98);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                }
+
+                .bitrix-feature-card {
+                    position: relative;
+                    overflow: visible;
+                    animation: bitrixCardIntro 0.75s ease both;
+                }
+
+                .bitrix-feature-card .bitrix-bg-icon {
+                    position: absolute;
+                    top: -44px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 88px;
+                    height: 88px;
+                    border-radius: 50%;
+                    background: rgba(2, 100, 160, 0.11);
+                    border: 1px solid rgba(2, 100, 160, 0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0264A0;
+                    pointer-events: none;
+                    z-index: 2;
+                    box-shadow: 0 10px 24px rgba(2, 100, 160, 0.18);
+                }
+
+                .bitrix-feature-card .bitrix-card-content {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                @media (max-width: 900px) {
+                    .bitrix-hero-grid {
+                        grid-template-columns: 1fr !important;
+                        gap: 2rem !important;
+                    }
+
+                    .bitrix-hero-copy {
+                        text-align: center !important;
+                    }
+                }
+            `}</style>
             <section style={{ 
                 padding: '8rem 0 4rem 0', 
-                textAlign: 'center',
                 width: '100vw',
                 marginLeft: 'calc(-50vw + 50%)',
                 marginRight: 'calc(-50vw + 50%)',
-                background: 'var(--bg-dark)'
+                background: 'var(--bg-dark)',
+                position: 'relative',
+                overflow: 'hidden'
             }}>
-                <div className="container">
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        zIndex: 0
+                    }}
+                >
+                    <source src={bitrixHeroVideo} type="video/webm" />
+                </video>
+
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'linear-gradient(135deg, rgba(243, 246, 248, 0.9), rgba(255, 255, 255, 0.92))',
+                    zIndex: 1
+                }} />
+
+                <div className="bitrix-hero-particles">
+                    <ParticlesBackground />
+                </div>
+
+                <div className="container bitrix-hero-grid" style={{
+                    maxWidth: '980px',
+                    position: 'relative',
+                    zIndex: 3
+                }}>
+                <div className="bitrix-hero-copy" style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
+                <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.9rem', flexWrap: 'wrap' }}>
+                    <img
+                        src={bitrixGoldBadge}
+                        alt="Bitrix24 Gold Partner"
+                        style={{
+                            width: 'min(220px, 62%)',
+                            height: 'auto',
+                            objectFit: 'contain',
+                            display: 'inline-block',
+                            filter: 'drop-shadow(0 10px 20px rgba(2, 100, 160, 0.24))',
+                            borderRadius: '12px'
+                        }}
+                    />
+                    <div style={{
+                        width: '85px',
+                        height: '85px',
+                        borderRadius: '50%',
+                        background: 'rgba(10, 10, 10, 0.82)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 10px 20px rgba(2, 100, 160, 0.2)',
+                        flexShrink: 0
+                    }}>
+                        <img
+                            src={workflowLogo}
+                            alt="Workflow"
+                            style={{
+                                width: '75px',
+                                height: '75px',
+                                objectFit: 'contain',
+                                display: 'block'
+                            }}
+                        />
+                    </div>
+                </div>
                 <h1 style={{ 
                     fontSize: 'clamp(2rem, 5vw, 3rem)', 
                     fontWeight: '900', 
                     marginBottom: '1.5rem', 
                     lineHeight: '1.2',
-                    color: 'var(--text-primary-dark)'
+                    color: 'var(--text-primary-dark)',
+                    position: 'relative'
                 }}>
                     {bitrixContent.hero.titlePrefix} <br /> <span style={{
                         background: 'linear-gradient(135deg, #0264A0 0%, #55B3D9 100%)',
@@ -52,7 +190,8 @@ const Bitrix24 = () => {
                     fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', 
                     color: 'var(--text-secondary-dark)', 
                     marginBottom: '2.5rem',
-                    lineHeight: 1.8
+                    lineHeight: 1.8,
+                    position: 'relative'
                 }}>
                     {bitrixContent.hero.description}
                 </p>
@@ -69,7 +208,8 @@ const Bitrix24 = () => {
                     fontWeight: '600',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
-                    border: 'none'
+                    border: 'none',
+                    position: 'relative'
                 }}
                 onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#55B3D9';
@@ -82,19 +222,6 @@ const Bitrix24 = () => {
                 >
                     {bitrixContent.hero.profileButtonLabel} <ArrowRight size={18} />
                 </a>
-                <div style={{ marginTop: '2rem' }}>
-                    <img 
-                        src={bitrixGoldBadge} 
-                        alt="Bitrix24 Gold Partner" 
-                        style={{
-                            width: '180px',
-                            maxWidth: '50%',
-                            height: 'auto',
-                            objectFit: 'contain',
-                            display: 'inline-block',
-                            filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.25))'
-                        }}
-                    />
                 </div>
                 </div>
             </section>
@@ -112,11 +239,13 @@ const Bitrix24 = () => {
                         {
                             title: bitrixContent.cards[0].title,
                             color: '#0264A0',
+                            bgIcon: Layers,
                             items: bitrixContent.cards[0].items
                         },
                         {
                             title: bitrixContent.cards[1].title,
                             color: '#0264A0',
+                            bgIcon: Settings,
                             iconItems: [
                                 { text: bitrixContent.cards[1].iconItems[0], icon: Layers },
                                 { text: bitrixContent.cards[1].iconItems[1], icon: Box },
@@ -126,11 +255,12 @@ const Bitrix24 = () => {
                                 }
                     ].map((card, idx) => (
                         <ScrollRevealItem key={idx} delay={idx * 0.1}>
-                        <div className="glass" style={{
-                            padding: '2.5rem',
+                        <div className="glass bitrix-feature-card" style={{
+                            padding: '5.2rem 2.5rem 2.5rem 2.5rem',
                             background: 'rgba(255, 255, 255, 0.7)',
                             transition: 'all 0.3s ease',
-                            borderLeft: card.title === 'Ecosistema' ? '4px solid #0264A0' : 'none'
+                            borderLeft: card.title === 'Ecosistema' ? '4px solid #0264A0' : 'none',
+                            animationDelay: `${idx * 0.12}s`
                         }}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.transform = 'translateY(-8px)';
@@ -141,21 +271,42 @@ const Bitrix24 = () => {
                             e.currentTarget.style.boxShadow = 'none';
                         }}
                         >
+                            {card.bgIcon && (
+                                <div className="bitrix-bg-icon">
+                                    <card.bgIcon size={46} strokeWidth={1.8} />
+                                </div>
+                            )}
+
+                            <div className="bitrix-card-content">
                             <h3 style={{ 
-                                fontSize: 'clamp(1.25rem, 2.5vw, 1.5rem)', 
-                                marginBottom: '1.5rem', 
+                                fontSize: 'clamp(1.4rem, 2.8vw, 1.8rem)', 
+                                marginBottom: '1.75rem', 
                                 color: card.color,
-                                fontWeight: '700'
+                                fontWeight: '800'
                             }}>{card.title}</h3>
                             
                             {card.items && (
                                 <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                     {card.items.map((item, i) => (
                                         <li key={i} style={{ 
+                                            display: 'flex',
+                                            alignItems: 'flex-start',
+                                            gap: '0.7rem',
                                             color: 'var(--text-secondary-dark)',
-                                            fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                                            lineHeight: 1.6
-                                        }}>{item}</li>
+                                            fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+                                            lineHeight: 1.65,
+                                            fontWeight: 500
+                                        }}>
+                                            <span style={{
+                                                width: '8px',
+                                                height: '8px',
+                                                borderRadius: '50%',
+                                                background: '#0264A0',
+                                                marginTop: '0.58rem',
+                                                flexShrink: 0
+                                            }}></span>
+                                            <span>{item}</span>
+                                        </li>
                                     ))}
                                 </ul>
                             )}
@@ -168,17 +319,20 @@ const Bitrix24 = () => {
                                             <li key={i} style={{ 
                                                 display: 'flex', 
                                                 alignItems: 'center', 
-                                                gap: '0.75rem',
+                                                gap: '0.85rem',
                                                 color: 'var(--text-secondary-dark)',
-                                                fontSize: 'clamp(0.9rem, 1.5vw, 1rem)'
+                                                fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+                                                fontWeight: 500,
+                                                lineHeight: 1.6
                                             }}>
-                                                <Icon size={18} style={{ color: '#0264A0', flexShrink: 0 }} /> 
+                                                <Icon size={20} style={{ color: '#0264A0', flexShrink: 0 }} /> 
                                                 {item.text}
                                             </li>
                                         );
                                     })}
                                 </ul>
                             )}
+                            </div>
                             
                         </div>
                         </ScrollRevealItem>
