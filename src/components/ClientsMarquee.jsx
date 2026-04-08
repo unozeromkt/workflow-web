@@ -16,6 +16,9 @@ const ClientsMarquee = ({ integrated = false }) => {
         { id: 6, src: uam, alt: 'UAM' }
     ];
 
+    // Ajustamos la velocidad para que el carrusel escale bien cuando aumente la cantidad de logos
+    const marqueeDuration = `${Math.max(55, logos.length * 10)}s`;
+
     // Duplicamos los logos para crear el efecto infinito sin gaps
     const duplicatedLogos = [...logos, ...logos];
 
@@ -30,7 +33,19 @@ const ClientsMarquee = ({ integrated = false }) => {
             position: 'relative',
             zIndex: integrated ? 10 : 'auto'
         }}>
-            {!integrated && (
+            {integrated ? (
+                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                    <h3 style={{
+                        color: 'var(--text-primary-dark)',
+                        fontSize: 'clamp(1.2rem, 2.4vw, 1.6rem)',
+                        fontWeight: 600,
+                        lineHeight: 1.3,
+                        margin: 0
+                    }}>
+                        Algunos de nuestros casos de éxito
+                    </h3>
+                </div>
+            ) : (
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <p style={{
                         color: '#55B3D9',
@@ -107,7 +122,7 @@ const ClientsMarquee = ({ integrated = false }) => {
 
                     .marquee-track {
                         display: flex;
-                        gap: 0;
+                        gap: clamp(0.5rem, 1.6vw, 1.5rem);
                         animation: marquee 70s linear infinite;
                         width: fit-content;
                     }
@@ -117,8 +132,8 @@ const ClientsMarquee = ({ integrated = false }) => {
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        min-width: 500px;
-                        height: 300px;
+                        min-width: 625px;
+                        height: 375px;
                         padding: 0;
                         margin: 0;
                         opacity: 1;
@@ -133,7 +148,7 @@ const ClientsMarquee = ({ integrated = false }) => {
                         width: 100%;
                         height: 100%;
                         object-fit: contain;
-                        padding: 10px;
+                        padding: 12px;
                         box-sizing: border-box;
                         filter: brightness(1);
                         transition: filter 0.3s ease;
@@ -145,8 +160,19 @@ const ClientsMarquee = ({ integrated = false }) => {
 
                     @media (max-width: 1024px) {
                         .logo-item {
-                            min-width: 300px;
-                            height: 200px;
+                            min-width: 375px;
+                            height: 250px;
+                        }
+
+                        .logo-item img {
+                            padding: 10px;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        .logo-item {
+                            min-width: 250px;
+                            height: 175px;
                         }
 
                         .logo-item img {
@@ -154,30 +180,19 @@ const ClientsMarquee = ({ integrated = false }) => {
                         }
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 480px) {
                         .logo-item {
-                            min-width: 200px;
-                            height: 140px;
+                            min-width: 188px;
+                            height: 125px;
                         }
 
                         .logo-item img {
                             padding: 6px;
                         }
                     }
-
-                    @media (max-width: 480px) {
-                        .logo-item {
-                            min-width: 150px;
-                            height: 100px;
-                        }
-
-                        .logo-item img {
-                            padding: 4px;
-                        }
-                    }
                 `}</style>
 
-                <div className="marquee-track">
+                <div className="marquee-track" style={{ animationDuration: marqueeDuration }}>
                     {duplicatedLogos.map((logo, index) => (
                         <div key={`${logo.id}-${index}`} className="logo-item">
                             <img

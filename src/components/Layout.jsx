@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import ClientsMarquee from './ClientsMarquee';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
@@ -22,6 +23,7 @@ const Layout = ({ children }) => {
             <main style={{ flex: 1, paddingTop: '80px' }}>
                 {children}
             </main>
+            <ClientsMarquee />
             <Footer />
         </div>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Check, CheckCircle2, Sparkles, Zap, Shield, Users, Server, Award } from 'lucide-react';
+import { ArrowRight, Check, CheckCircle2, BrainCircuit, Cloud, Bot, LayoutDashboard, Zap, Server, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import ScrollRevealItem from '../components/ScrollRevealItem';
@@ -20,10 +20,10 @@ import bitrix2 from '../assets/Bitrix.jpg';
 import { fetchHomeContent, getHomeContent } from '../utils/contentStorage';
 
 const serviceDefinitions = [
-    { icon: Sparkles, link: '/ia' },
-    { icon: Zap, link: '/soluciones' },
-    { icon: Users, link: '/soluciones' },
-    { icon: Shield, link: '/bitrix24' }
+    { icon: BrainCircuit, link: '/ia' },
+    { icon: Cloud, link: '/soluciones' },
+    { icon: Bot, link: '/soluciones' },
+    { icon: LayoutDashboard, link: '/bitrix24' }
 ];
 
 const ServicesCarousel = (editableServices) => {
