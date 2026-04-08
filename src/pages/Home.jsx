@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Check, CheckCircle2, BrainCircuit, Cloud, Bot, LayoutDashboard, Zap, Server, Award } from 'lucide-react';
+import Lottie from 'lottie-react';
 import { Link } from 'react-router-dom';
 import ParticlesBackground from '../components/ParticlesBackground';
 import ScrollRevealItem from '../components/ScrollRevealItem';
@@ -8,7 +9,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import heroBackground from '../assets/hero-.webp';
 import workflowEcosystem from '../assets/workflow-ecosystem.png';
 import aiStrategyImg from '../assets/ai-strategy.png';
-import cloudInfraImg from '../assets/iso-cloud-blue.png';
+import homeHeroLottie from '../assets/video/Charts.json';
 import bpoServiceImg from '../assets/bpo-service.png';
 import bitrixServiceImg from '../assets/bitrix-service.png';
 import whyWorkflowImg from '../assets/why-workflow.png';
@@ -240,7 +241,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        {/* Right Column - Image */}
+                        {/* Right Column - Lottie */}
                         <div style={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -253,9 +254,10 @@ const Home = () => {
                                 maxWidth: '500px',
                                 aspectRatio: '1/1'
                             }}>
-                                <img
-                                    src={cloudInfraImg}
-                                    alt="Cloud Infrastructure"
+                                <Lottie
+                                    animationData={homeHeroLottie}
+                                    loop={true}
+                                    autoplay={true}
                                     style={{
                                         width: '100%',
                                         height: '100%',

@@ -33,6 +33,16 @@ const Bitrix24 = () => {
                     z-index: 2 !important;
                 }
 
+                .bitrix-hero-lottie {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 0;
+                    pointer-events: none;
+                }
+
                 @keyframes bitrixCardIntro {
                     from {
                         opacity: 0;
@@ -101,14 +111,9 @@ const Bitrix24 = () => {
                     playsInline
                     preload="metadata"
                     aria-hidden="true"
+                    className="bitrix-hero-lottie"
                     style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        zIndex: 0
+                        objectFit: 'cover'
                     }}
                 >
                     <source src={bitrixHeroVideo} type="video/webm" />
@@ -120,7 +125,7 @@ const Bitrix24 = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    background: 'linear-gradient(135deg, rgba(243, 246, 248, 0.9), rgba(255, 255, 255, 0.92))',
+                    background: 'linear-gradient(135deg, rgba(243, 246, 248, 0.68), rgba(255, 255, 255, 0.72))',
                     zIndex: 1
                 }} />
 
