@@ -9,7 +9,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import heroBackground from '../assets/hero-.webp';
 import workflowEcosystem from '../assets/workflow-ecosystem.png';
 import aiStrategyImg from '../assets/ai-strategy.png';
-import homeHeroLottie from '../assets/video/Charts.json';
+import homeHeroLottie from '../assets/video/Live_chatbot.json';
 import bpoServiceImg from '../assets/bpo-service.png';
 import bitrixServiceImg from '../assets/bitrix-service.png';
 import whyWorkflowImg from '../assets/why-workflow.png';
